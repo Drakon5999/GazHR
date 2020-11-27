@@ -13,7 +13,7 @@ services:
     networks:
       - net
     volumes:
-      - ../pgdata/pgdata:/var/lib/postgresql/data_docker/pgdata_docker
+      - ../pgdata:/var/lib/postgresql/data
   gazhr_server:
     build: gazhr_server
     image: gazhr_server

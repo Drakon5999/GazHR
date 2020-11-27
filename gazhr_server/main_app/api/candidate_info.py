@@ -11,5 +11,5 @@ def candidate_info(request):
         candidate_id = data.get("candidate_id", None)
         candidate = Candidate.objects.filter(id__in=[candidate_id])
         return JsonResponse({"status": 200, "data": candidate[0]})
-    except:
-        return JsonResponse({"status": 404})
+    except BaseException as e:
+        return JsonResponse({"status": 404, "error": e})
