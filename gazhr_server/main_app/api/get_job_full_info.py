@@ -2,7 +2,9 @@ from django.http import HttpResponse, HttpResponseRedirect, Http404, JsonRespons
 from main_app.models import Vacancy, Vacancy2Resume, Resume, Candidate, Task
 import json
 
-def get_job_full_info(job_id):
+def get_job_full_info(request):
+    d = json.loads(request.body)
+    job_id = d["json_id"]
     vacancy = Vacancy.objects.get(id=job_id)
     vac_2_can = Vacancy2Resume.objects.filter(vacancy_id=job_id)
     resumes = []
