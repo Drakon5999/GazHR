@@ -4,7 +4,11 @@ from main_app.models import Vacancy
 import json
 import requests
 
+
 def generate_description(request):
-    data = json.loads(request.body)
-    response = requests.post('http://example.com', data=data)
-    return JsonResponse(response)
+    try:
+        data = json.loads(request.body)
+        response = requests.post('http://example.com', data=data)
+        return JsonResponse({"status": 200, "data": response})
+    except:
+        return JsonResponse({"status": 404})

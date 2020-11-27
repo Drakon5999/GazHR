@@ -12,7 +12,10 @@ class Scenario(models.Model):
 
 class Task(models.Model):
     name = models.TextField(help_text="Task text")
-    path = models.TextField(help_text="Path to task documents")
+    path = models.TextField(
+        help_text="Path to task documents",
+        default=None, null=True
+    )
     created_timestamp = models.DateTimeField(
         help_text="Timestamp of creation"
     )
@@ -36,7 +39,6 @@ class Vacancy(models.Model):
 
 class Candidate(models.Model):
     full_name = models.TextField(help_text="Full name")
-    status = models.TextField(help_text="Сandidate status")
     addition_info = models.JSONField(null=True)
     created_timestamp = models.DateTimeField(
         help_text="Timestamp of creation"
@@ -47,6 +49,8 @@ class Resume(models.Model):
     candidate_id = models.ForeignKey(Candidate, on_delete=models.CASCADE)
     text = models.TextField(help_text="Resume text")
     tags = models.JSONField(null=True)
+    status = models.TextField(help_text="Resume status", default="")
+    score = models.FloatField(help_text="Score of resume", default=0.0)
     created_timestamp = models.DateTimeField(
         help_text="Timestamp of creation"
     )

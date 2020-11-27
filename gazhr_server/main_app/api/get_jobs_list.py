@@ -7,6 +7,7 @@ def get_jobs_list(request):
     valancy = Vacancy.objects.all()
     return JsonResponse(
         {
+            "status": 200,
             "jobs": [
                 {
                     "job_name": x.name,
