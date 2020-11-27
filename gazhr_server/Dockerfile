@@ -1,7 +1,7 @@
 FROM python:3
 ENV PYTHONUNBUFFERED 1
 
-WORKDIR authorization_server
+WORKDIR workdir
 
 COPY . .
 RUN pip install -r ./etc/requirements.txt

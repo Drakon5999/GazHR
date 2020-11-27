@@ -5,9 +5,9 @@ services:
     image: postgres
     environment:
       - DOCKER=True
-      - POSTGRES_USER=gazhr_server
+      - POSTGRES_USER=gazhr
       - POSTGRES_PASSWORD=Iamgenius
-      - POSTGRES_DB=gazhr_server_db
+      - POSTGRES_DB=gazhr_db
     ports:
       - "54320:5432"
     networks:
@@ -30,7 +30,7 @@ services:
   hrmarusa:
     build: hrmarusa
     image: hrmarusa
-    command: "./app.py"
+    command: "python /app.py"
     ports:
       - "7000:7000"
     networks:
