@@ -4,6 +4,9 @@ import json
 
 
 def get_scenario(request):
-    data = json.loads(request.data)
-    s = Scenario.objects.get(id=data['scenario_id'])
-    return JsonResponse(s.json_scenario)
+    try:
+        data = json.loads(request.data)
+        s = Scenario.objects.get(id=data['scenario_id'])
+        return JsonResponse({"status": 200, "data": s.json_scenario})
+    except:
+        return JsonResponse({"status": 404})
