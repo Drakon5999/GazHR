@@ -1,10 +1,11 @@
 import {Col, Container, Button, Row} from 'react-bootstrap';
 import {VacancyMinimized} from '../containers';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Helmet} from "react-helmet";
 import to from 'await-to-js';
 import {GoBackButton} from '../components';
 import {api} from '../services';
+import {Link} from 'react-router-dom';
 
 function VacancyList() {
   const [vacancies, setVacancies] = useState([{
@@ -27,8 +28,18 @@ function VacancyList() {
     data?.jobs && setVacancies(data.jobs);
   };
 
-  const refreshInterval = 10000;
-  setInterval(getVacancies, refreshInterval);
+
+  useEffect(() => {
+    getVacancies();
+
+    const refreshInterval = 10000;
+    const intervalID = setInterval(getVacancies, refreshInterval);
+
+    return () => {
+      console.log('close')
+      clearInterval(intervalID);
+    };
+  }, [])
 
   return (
     <>
@@ -39,7 +50,9 @@ function VacancyList() {
       <Container>
         <Row className="justify-content-between mb-2">
           <Col className="text-left">
-            <Button variant="success" href={'/create-vacancy'}>Создать вакансию</Button>
+            <Link to={'/create-vacancy'}>
+              <Button variant="success">Создать вакансию</Button>
+            </Link>
           </Col>
 
           <Col className="text-right">
