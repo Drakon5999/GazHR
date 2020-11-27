@@ -45,6 +45,10 @@ def generate_template(txt):
             new_texts.append(s)
     return {
         'description': '. '.join(new_texts),
-        'skills': skills,
-        'experience': experience
+        'hh' : {
+            'description': '. '.join(new_texts),
+            'skills': skills,
+            'experience': experience
+        }
+        
     }
