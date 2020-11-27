@@ -30,7 +30,7 @@ services:
   hrmarusa:
     build: hrmarusa
     image: hrmarusa
-    command: "python3 app.py"
+    command: "./app.py"
     ports:
       - "7000:7000"
     networks:
