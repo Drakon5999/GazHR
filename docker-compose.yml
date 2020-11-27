@@ -9,7 +9,7 @@ services:
       - POSTGRES_PASSWORD=Iamgenius
       - POSTGRES_DB=gazhr_server_db
     ports:
-      - "54321:5432"
+      - "54320:5432"
     networks:
       - net
     volumes:
