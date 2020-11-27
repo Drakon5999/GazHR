@@ -1,0 +1,16 @@
+[global]
+SECRET_KEY: ******
+DEBUG: True
+
+DOMAIN: gazhr_server
+
+[database_primary]
+
+DATABASE_ENGINE: django.db.backends.postgresql_psycopg2
+DATABASE_NAME: gazhr_server
+DATABASE_USER: postgres
+DATABASE_PASSWORD: Iamgenius
+DATABASE_HOST: gazhr_server_db
+DATABASE_HOST_WITHOUT: localhost
+DATABASE_PORT: 5432
+DATABASE_PORT_WITHOUT: 54320

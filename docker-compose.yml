@@ -1,0 +1,32 @@
+version: '3.5'
+
+services:
+  gazhr_server_db:
+    image: postgres
+    environment:
+      - DOCKER=True
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=Iamgenius
+      - POSTGRES_DB=gazhr_server_db
+    ports:
+      - "54321:5432"
+    networks:
+      - net
+    volumes:
+      - ../pgdata/pgdata:/var/lib/postgresql/data_docker/pgdata_docker
+  gazhr_server:
+    build: gazhr_server
+    image: gazhr_server
+    command: ["bash", "-c", "sleep 15; python manage.py migrate --noinput; sleep 10; python manage.py runserver 0.0.0.0:8000;"]
+    volumes:
+      - .:/gazhr_server
+    ports:
+      - "8000:8000"
+    depends_on:
+      - gazhr_server_db
+    networks:
+     - net
+
+networks:
+  net:
+    driver: bridge
