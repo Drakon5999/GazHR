@@ -6,7 +6,7 @@ import json
 def get_job_full_info(request):
     try:
         d = json.loads(request.body)
-        job_id = d["json_id"]
+        job_id = d["job_id"]
         vacancy = Vacancy.objects.get(id=job_id)
         vac_2_can = Vacancy2Resume.objects.filter(vacancy_id=job_id)
         resumes = []
@@ -25,5 +25,5 @@ def get_job_full_info(request):
                "scenario_id": vacancy.scenario_id, "candidates": candidates,
                "test_files": [{"name": task.name, "test_file_url": task.file}]}
         return JsonResponse({"status": 200, "data": json.dumps(ans)})
-    except:
-        return JsonResponse({"status": 404})
+    except BaseException as e:
+        return JsonResponse({"status": 404, "error": e})

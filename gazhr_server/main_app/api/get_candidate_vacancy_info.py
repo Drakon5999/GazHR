@@ -16,5 +16,5 @@ def get_candidate_vacancy_info(request):
                        "additional_json": candidate.addition_info}
                 return JsonResponse({"status": 200, "data": json.dumps(ans)})
         return JsonResponse({"status": 200, "data": {}})
-    except:
-        return JsonResponse({"status": 404})
+    except BaseException as e:
+        return JsonResponse({"status": 404, "error": e})

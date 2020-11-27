@@ -8,12 +8,11 @@ services:
       - POSTGRES_USER=gazhr
       - POSTGRES_PASSWORD=Iamgenius
       - POSTGRES_DB=gazhr_db
+      - PGDATA=../pgdata
     ports:
       - "54320:5432"
     networks:
       - net
-    volumes:
-      - ../pgdata/pgdata:/var/lib/postgresql/data_docker/pgdata_docker
   gazhr_server:
     build: gazhr_server
     image: gazhr_server
