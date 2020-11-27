@@ -6,5 +6,5 @@ import requests
 
 def generate_description(request):
     data = json.loads(request.body)
-    response = requests.post('http://example.com', data=data)
-    return JsonResponse(response)
+    response = requests.post('http://localhost:7000/generate', data=data)
+    return JsonResponse(response.json())
