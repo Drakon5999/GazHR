@@ -4,7 +4,7 @@ function GeneratedText({text}) {
   return (
       <Card.Body className={"GeneratedText"}>
         <Card.Text>
-          {text}
+          {text || 'Заявка на вакансию'}
         </Card.Text>
       </Card.Body>
   );
