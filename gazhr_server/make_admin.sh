@@ -14,4 +14,4 @@ if User.objects.filter(username=username).count()==0:
 else:
     print('Superuser creation skipped.');
 "
-printf "$script" | python manage.py shells
+printf "$script" | python manage.py shell
