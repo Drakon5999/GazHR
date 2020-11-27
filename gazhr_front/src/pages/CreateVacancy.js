@@ -55,7 +55,11 @@ function CreateVacancy() {
       </Helmet>
 
       <Container>
-        <GoBackButton />
+        <Row className="mb-2">
+          <Col className="text-right">
+            <GoBackButton />
+          </Col>
+        </Row>
 
         <Row className={"form"}>
           <Col sm={8}>
