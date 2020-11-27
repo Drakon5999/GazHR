@@ -22,3 +22,70 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+
+logs/
+*.sqlite3
+
+tags
+
+# OSX
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Byte-compiled / optimized / DLL files
+*.py[cod]
+__pycache__
+__pycache__/
+*$py.class
+
+# Pycharm
+.idea/
+
+# Installer logs
+pip-log.txt
+
+# Docs
+docs/build/
+docs/_build/
+
+# Virtualenv
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+# Vagrant
+.vagrant/
+
+# Pytest
+.cache/
+.pytest_cache/
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+
+# Unit test / coverage reports
+.coverage
+htmlcov/
+
+# Distribution / packaging
+.env/
+build/
+dist/
+booking_api.egg-info/
+
+# Pypi
+.pypirc
+.pkg
+
+# Emacs
+*~
+
+pgdata
