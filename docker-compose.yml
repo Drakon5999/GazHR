@@ -5,7 +5,7 @@ services:
     image: postgres
     environment:
       - DOCKER=True
-      - POSTGRES_USER=postgres
+      - POSTGRES_USER=gazhr_server
       - POSTGRES_PASSWORD=Iamgenius
       - POSTGRES_DB=gazhr_server_db
     ports:
