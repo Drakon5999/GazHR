@@ -6,16 +6,21 @@ import requests
 
 
 def submit_description(request):
-    data = json.loads(request.body)
-    model_response = requests.post('http://localhost:7000/generate', data=data).json()
+    try:
+        data = json.loads(request.body)
+        model_response = requests.post(
+            'http://localhost:7000/generate', data=data).json()
 
-    vacancy = Vacancy(
-        source_text=data['text'],
-        transfored_text=model_response['description'],
-        created_timestamp=timezone.now()
-    )
-    vacancy.save()
+        vacancy = Vacancy(
+            source_text=data['text'],
+            transfored_text=model_response['description'],
+            created_timestamp=timezone.now()
+        )
+        vacancy.save()
 
-    return JsonResponse({
-        'job_id': vacancy.id
-    })
+        return JsonResponse({
+            'status': 200,
+            'job_id': vacancy.id
+        })
+    except:
+        return JsonResponse({"status": 404})
