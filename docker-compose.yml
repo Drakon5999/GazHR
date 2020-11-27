@@ -27,6 +27,15 @@ services:
     networks:
      - net
 
+  hrmarusa:
+    build: hrmarusa
+    image: hrmarusa
+    command:
+    ports:
+      - "7000:7000"
+    networks:
+      - net
+
 networks:
   net:
     driver: bridge
