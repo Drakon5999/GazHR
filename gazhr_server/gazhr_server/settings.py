@@ -156,11 +156,11 @@ DATABASES = {
             fallback='***'
         ),
         'HOST': config.get(
-            'database_primary', 'DATABASE_HOST_WITHOUT',
+            'database_primary', 'DATABASE_HOST',
             fallback='127.0.0.1'
         ),
         'PORT': config.get(
-            'database_primary', 'DATABASE_PORT_WITHOUT',
+            'database_primary', 'DATABASE_PORT',
             fallback='6432'
         ),
     }
@@ -188,6 +188,8 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+MODEL_HOST = config.get('hrmarusa', 'MODEL_HOST', fallback='127.0.0.1')
+MODEL_PORT = config.get('hrmarusa', 'MODEL_PORT', fallback='7000')
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
