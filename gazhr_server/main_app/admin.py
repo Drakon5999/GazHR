@@ -1,5 +1,5 @@
 from django.contrib import admin
-from gazht_server.models import *
+from main_app.models import *
 
 # Register your models here.
 
