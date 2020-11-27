@@ -12,7 +12,10 @@ class Scenario(models.Model):
 
 class Task(models.Model):
     name = models.TextField(help_text="Task text")
-    path = models.TextField(help_text="Path to task documents")
+    path = models.TextField(
+        help_text="Path to task documents",
+        default=None, null=True
+    )
     created_timestamp = models.DateTimeField(
         help_text="Timestamp of creation"
     )

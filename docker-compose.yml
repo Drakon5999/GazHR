@@ -17,7 +17,7 @@ services:
   gazhr_server:
     build: gazhr_server
     image: gazhr_server
-    command: ["bash", "-c", "sleep 15; python manage.py migrate --noinput; sleep 10; python manage.py runserver 0.0.0.0:8000; ./make_admin.sh"]
+    command: ["bash", "-c", "sleep 15; python manage.py migrate --noinput; sleep 10; python manage.py runserver 0.0.0.0:8000; make_admin.sh"]
     volumes:
       - .:/gazhr_server
     ports:
