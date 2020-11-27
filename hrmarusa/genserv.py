@@ -23,6 +23,7 @@ def generate_template(txt):
     new_texts = []
     experience = []
     skills = []
+    pos_skills_start, pos_skills_end = 0,0
     for s in sentences:
         dont_include = False
         
@@ -41,14 +42,27 @@ def generate_template(txt):
                 dont_include = True
                 for q in re.findall(r"("+ys+")", s):
                     experience.append(q)
+
         if not dont_include:
             new_texts.append(s)
+
+    warnings = []
+    if len(skills) == 0:
+        warnings.append('навыки не заполнены', pos_skills_start, pos_skills_end)
+
     return {
+        'id': 57121,
         'description': '. '.join(new_texts),
         'hh' : {
             'description': '. '.join(new_texts),
             'skills': skills,
             'experience': experience
-        }
-        
+        },
+        'warnings': [{
+            'item': {
+                'text':t,
+                'pos_start': start,
+                'pos_end': end
+            }
+        } for t,start,end in warnings]
     }
