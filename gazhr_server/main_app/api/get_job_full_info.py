@@ -11,7 +11,7 @@ def get_job_full_info(job_id):
     candidates = []
     for x in resumes:
         cand = Candidate.objects.get(x.candidate_id)
-        tmp = {"candidate_id": x.candidate_id, "status": x.status, "name": cand.full_name}
+        tmp = {"candidate_id": x.candidate_id, "status": x.status, "name": cand.full_name, "score": x.score}
         candidates.append(tmp)
 
     task = Task.objects.get(vacancy.task_id)

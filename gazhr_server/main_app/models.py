@@ -47,6 +47,7 @@ class Resume(models.Model):
     text = models.TextField(help_text="Resume text")
     tags = models.JSONField(null=True)
     status = models.TextField(help_text="Resume status")
+    score = models.FloatField(help_text="Score of resume")
     created_timestamp = models.DateTimeField(
         help_text="Timestamp of creation"
     )
