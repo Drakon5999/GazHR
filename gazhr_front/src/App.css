@@ -17,3 +17,14 @@
     border: 1px solid #ced4da;
     border-radius: 0.25rem;
 }
+.SectionHint {
+    margin-right: 10px;
+    width: 18rem;
+}
+.SectionHintBody {
+    display: flex;
+    flex-direction: column;
+}
+.textSection {
+    flex: 1;
+}

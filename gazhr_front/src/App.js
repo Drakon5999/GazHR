@@ -1,11 +1,37 @@
 import React from 'react';
 import './App.css';
-import CreateVacancy from './pages/CreateVacancy';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from 'react-router-dom';
+import {Home, CreateVacancy, VacancyList, Vacancy} from './pages';
 
 function App() {
   return (
     <div className="App">
-      <CreateVacancy />
+      <Router>
+        <div>
+          <Switch>
+            <Route path="/vacancy/:id">
+              <Vacancy/>
+            </Route>
+
+            <Route path="/vacancy">
+              <VacancyList/>
+            </Route>
+
+            <Route path="/create-vacancy">
+              <CreateVacancy/>
+            </Route>
+
+            <Route path="/">
+              <Home />
+            </Route>
+          </Switch>
+        </div>
+      </Router>
     </div>
   );
 }

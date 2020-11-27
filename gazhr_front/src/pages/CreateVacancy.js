@@ -4,6 +4,7 @@ import {api} from '../services';
 import React, {useState, useRef} from 'react';
 import to from 'await-to-js';
 import {Helmet} from "react-helmet";
+import {GoBackButton} from '../components';
 
 const useUserEdit = () => {
   const [text, setText] = useState('');
@@ -54,6 +55,8 @@ function CreateVacancy() {
       </Helmet>
 
       <Container>
+        <GoBackButton />
+
         <Row className={"form"}>
           <Col sm={8}>
             <Row>
