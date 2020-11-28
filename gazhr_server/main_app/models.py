@@ -7,6 +7,7 @@ class Scenario(models.Model):
     created_timestamp = models.DateTimeField(
         help_text="Timestamp of creation"
     )
+    name = models.TextField(help_text="Scenario name")
     json_scenario = models.JSONField(null=True)
 
 
