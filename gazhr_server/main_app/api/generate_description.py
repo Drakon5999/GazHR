@@ -11,4 +11,4 @@ def generate_description(request):
         response = requests.post('http://example.com', data=data)
         return JsonResponse({"status": 200, "data": response})
     except BaseException as e:
-        return JsonResponse({"status": 404, "error": e})
+        return JsonResponse({"status": 404, "error": str(e)})

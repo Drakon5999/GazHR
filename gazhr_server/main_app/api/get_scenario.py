@@ -9,4 +9,4 @@ def get_scenario(request):
         s = Scenario.objects.get(id=data['scenario_id'])
         return JsonResponse({"status": 200, "data": s.json_scenario})
     except BaseException as e:
-        return JsonResponse({"status": 404, "error": e})
+        return JsonResponse({"status": 404, "error": str(e)})

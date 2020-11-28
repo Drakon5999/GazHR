@@ -23,4 +23,4 @@ def submit_description(request):
             'job_id': vacancy.id
         })
     except BaseException as e:
-        return JsonResponse({"status": 404, "error": e})
+        return JsonResponse({"status": 404, "error": str(e)})
