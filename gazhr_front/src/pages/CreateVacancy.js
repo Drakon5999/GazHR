@@ -1,5 +1,6 @@
 import {Container, Row, Col, Button, Spinner, Alert} from 'react-bootstrap';
-import {TextEditor, GeneratedText, RecommendSet} from '../containers';
+import {TextEditor, GeneratedText} from '../containers';
+import {RecommendSet} from '../components';
 import {api} from '../services';
 import React, {useState, useRef} from 'react';
 import to from 'await-to-js';
