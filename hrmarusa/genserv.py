@@ -165,7 +165,7 @@ def generate_template(txt):
         duties_list.append('В обязанности входит: ' + duties)
 
     experience_str = ''
-    if len(experience) > 0
+    if len(experience) > 0:
         experience_str = 'Желаемый опыт работы: ' + experience[0]
 
     new_texts = [team_name + ' требуется ' + typevac] + duties_list + [experience_str] + new_texts + [get_offer()]
