@@ -8,7 +8,7 @@ from django.views.decorators.csrf import csrf_exempt
 @csrf_exempt
 def resume_status_change(request):
     try:
-        data = json.loads(request.data)
+        data = json.loads(request.body)
         res_id = data.pop('resume_id')
         res = Resume.objects.get(id=res_id)
         for attr, val in data.items():
