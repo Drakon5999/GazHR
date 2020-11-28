@@ -21,6 +21,7 @@ from main_app.api.check import check
 from main_app.api.remove_vacancy2resume import remove_vacancy2resume
 from main_app.api.update_scenario_step import update_scenario_step
 from main_app.api.send_email import send_email
+from main_app.api.add_candidate import add_candidate
 
 urlpatterns = [
     path("api/get_jobs_list", get_jobs_list, name="api/get_jobs_list"),
@@ -54,5 +55,6 @@ urlpatterns = [
     path("api/update_scenario_step", update_scenario_step,
          name="api/update_scenario_step"),
     path("api/send_email", send_email, name="api/send_email"),
+    path("api/add_candidate", add_candidate, name="api/add_candidate"),
 
 ]
