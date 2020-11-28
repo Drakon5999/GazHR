@@ -6,7 +6,7 @@ import {
   Route,
   Link
 } from 'react-router-dom';
-import {Home, CreateVacancy, CreateVacancyCustomer, VacancyList, Vacancy, VacancyListCustomer} from './pages';
+import {Home, CreateVacancy, CreateVacancyCustomer, VacancyList, Vacancy, VacancyListCustomer, CreateTemplate} from './pages';
 import CreateScript from './pages/CreateScript';
 
 function App() {
@@ -37,6 +37,10 @@ function App() {
 
             <Route path="/create-script">
               <CreateScript/>
+            </Route>
+
+            <Route path="/create-template">
+              <CreateTemplate/>
             </Route>
 
             <Route path="/">

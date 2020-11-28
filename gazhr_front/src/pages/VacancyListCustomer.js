@@ -36,7 +36,7 @@ function VacancyListCustomer() {
       </Helmet>
 
       <Container>
-        <Row className="justify-content-between mb-2">
+        <Row className="Header justify-content-between mb-2">
           <Col className="text-left">
             <Link to={'/create-vacancy'}>
               <Button variant="success">Создать вакансию</Button>
@@ -48,8 +48,8 @@ function VacancyListCustomer() {
           </Col>
         </Row>
 
-        {vacancies.length ? vacancies.map(({job_name, job_description, job_status}) => {
-          return <VacancyCustomerMinimized key={job_name} description={job_description} title={job_name} status={job_status} />
+        {vacancies.length ? vacancies.map(({job_name, job_description, job_status, job_id}) => {
+          return <VacancyCustomerMinimized key={job_name} description={job_description} id={job_id} title={job_name} status={job_status} />
         }) : <EmptyVacancies />}
       </Container>
     </>

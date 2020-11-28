@@ -7,16 +7,17 @@ import {GoBackButton, EmptyVacancies} from '../components';
 import {api} from '../services';
 import {Link} from 'react-router-dom';
 
+const defaultVacancy = {job_name:'Разработчик JS', job_description: 'Очень рочно требуется разбраточки NodeJS', job_status:''};
+
 function VacancyList() {
-  const [vacancies, setVacancies] = useState([{job_name:'test', job_description: 'sndfjasdf', job_status:'warning'}]); //TODO удалить значение
+  const [vacancies, setVacancies] = useState([defaultVacancy]); //TODO удалить значение
 
   const getVacancies = async () => {
     const [error, data] = await to(api.getJobsList());
     if (error) return;
 
-    data?.jobs && setVacancies(data.jobs);
+    data?.jobs && setVacancies([defaultVacancy, ...data.jobs]);
   };
-
 
   useEffect(() => {
     getVacancies();
@@ -36,7 +37,7 @@ function VacancyList() {
       </Helmet>
 
       <Container>
-        <Row className="justify-content-between mb-2">
+        <Row className="Header justify-content-between mb-2">
           <Col className="text-left">
             <Link to={'/create-vacancy'}>
               <Button variant="success">Создать вакансию</Button>
@@ -48,8 +49,8 @@ function VacancyList() {
           </Col>
         </Row>
 
-        {vacancies.length ? vacancies.map(({job_name, job_description, job_id, job_status}) => {
-          return <VacancyMinimized key={job_name} description={job_description} id={job_id} title={job_name} />
+        {vacancies.length ? vacancies.map(({job_name, scenario_id, job_description, job_id, job_status}) => {
+          return <VacancyMinimized key={job_name} description={job_description} scriptId={scenario_id} id={job_id} title={job_name} />
         }) : <EmptyVacancies />}
       </Container>
     </>

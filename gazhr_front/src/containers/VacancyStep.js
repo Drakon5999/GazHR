@@ -1,11 +1,11 @@
 import {Card, Modal, ListGroup, Button} from 'react-bootstrap';
 import {CandidateScore} from '../components';
-import {useState} from 'react';
+import React, {useState} from 'react';
 import to from 'await-to-js';
 import {api} from '../services';
 
 const NextStepIcon = () => (<svg width="1em" height="1em" viewBox="0 0 16 16" className="bi bi-forward" fill="currentColor"
-                           xmlns="http://www.w3.org/2000/svg">
+                                 xmlns="http://www.w3.org/2000/svg">
   <path fill-rule="evenodd"
         d="M9.502 5.513a.144.144 0 0 0-.202.134V6.65a.5.5 0 0 1-.5.5H2.5v2.9h6.3a.5.5 0 0 1 .5.5v1.003c0 .108.11.176.202.134l3.984-2.933a.51.51 0 0 1 .042-.028.147.147 0 0 0 0-.252.51.51 0 0 1-.042-.028L9.502 5.513zM8.3 5.647a1.144 1.144 0 0 1 1.767-.96l3.994 2.94a1.147 1.147 0 0 1 0 1.946l-3.994 2.94a1.144 1.144 0 0 1-1.767-.96v-.503H2a.5.5 0 0 1-.5-.5v-3.9a.5.5 0 0 1 .5-.5h6.3v-.503z"/>
 </svg>);
@@ -28,7 +28,7 @@ const OtherVacancyIcon = () => (
   </svg>
 );
 
-function VacancyCandidates({candidates}) {
+function VacancyStep({title, isMeeting, candidates, handleNextStep, handleDeny, handleOtherJob}) {
   const [show, setShow] = useState(false);
   const [info, setInfo] = useState({});
 
@@ -48,26 +48,26 @@ function VacancyCandidates({candidates}) {
       }
     }
 
-    const data = {name: res.data.name, more};
+    const data = {name: res.data.name, more, id: res.data.candidate_id};
 
     setInfo(data)
     setShow(true);
   }
 
   return (
-    <Card style={{width: '100%', height: '100%'}}>
-      <Card.Header>Список кандидатов</Card.Header>
-      <ListGroup variant="flush">
+    <Card style={{width: '100%', backgroundColor: '#b5aada'}} className="mb-2">
+      <Card.Header><strong>{title}</strong></Card.Header>
+      <ListGroup>
         {candidates.map(candidate => (
-          <ListGroup.Item key={`${candidate.score}${candidate.name}`} className="Candidate">
-            <Button variant="outline-danger" style={{marginLeft: 5}}><DenyIcon/></Button>{' '}
+          <ListGroup.Item key={`${candidate.score}${candidate.name}`} className="Candidate" style={{backgroundColor: 'rgb(241 237 255)'}}>
+            <Button variant="outline-danger" style={{marginLeft: 5}} onClick={() => handleDeny(candidate.candidate_id)}><DenyIcon/></Button>{' '}
 
             <span style={{flex: 1}} onClick={() => handleShowInfo(candidate.candidate_id)}>{candidate.name}</span>{' '}
 
             <CandidateScore score={candidate.score} />{' '}
 
             <Button variant="outline-info" style={{marginRight: 5}}><OtherVacancyIcon/></Button>
-            <Button variant="outline-success" style={{marginRight: 5}}><NextStepIcon /></Button>
+            <Button variant="success" style={{marginRight: 5}} onClick={() => handleNextStep(candidate.candidate_id)}><NextStepIcon /></Button>
           </ListGroup.Item>
         ))}
       </ListGroup>
@@ -80,10 +80,10 @@ function VacancyCandidates({candidates}) {
           {info.more?.map(item => <p key={item.name}><strong>{item.name}</strong>: {item.value}</p>)}
         </Modal.Body>
         <Modal.Footer className="justify-content-between">
-          <Button variant="outline-danger" onClick={handleClose}>Отказать <DenyIcon/></Button>
+          <Button variant="outline-danger" onClick={() => handleDeny(info.candidate_id)}>Отказать <DenyIcon/></Button>
           <span>
-            <Button variant="outline-info" onClick={handleClose}>Предложить другую вакансию <OtherVacancyIcon/></Button>{' '}
-            <Button variant="success" onClick={handleClose}>На следующий шаг <NextStepIcon /></Button>
+            <Button variant="outline-info" onClick={() => handleOtherJob(info.candidate_id)}>Предложить другую вакансию <OtherVacancyIcon/></Button>{' '}
+            <Button variant="success" onClick={() => handleNextStep(info.candidate_id)}>На следующий шаг <NextStepIcon /></Button>
           </span>
         </Modal.Footer>
       </Modal>
@@ -91,4 +91,4 @@ function VacancyCandidates({candidates}) {
   );
 }
 
-export default VacancyCandidates;
+export default VacancyStep;

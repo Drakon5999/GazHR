@@ -20,7 +20,7 @@ function VacancyMinimized({description, title, id, status}) {
     <Row>
       <Col>
         <Card bg={status} className="text-left mb-2" onClick={() => setShow(true)}>
-          <Card.Header as="h5">{title}</Card.Header>
+          <Card.Header as="h5">{title || 'Без имени'}</Card.Header>
           <Card.Body>
             <Card.Text>
               {description}

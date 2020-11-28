@@ -23,7 +23,7 @@ function CreateScript() {
       </Helmet>
 
       <Container>
-        <Row className="mb-2">
+        <Row className="Header mb-2">
           <Col className="text-left">
             <Button variant="success" onClick={handleNewStep}>Добавить шаг</Button>
           </Col>
@@ -34,15 +34,6 @@ function CreateScript() {
         </Row>
 
         <ScriptSteps steps={steps}/>
-
-        <Row className="justify-content-md-center">
-          <Button
-            disabled={isLoading}
-            variant="success"
-            onClick={() => handleSubmit()}>
-            {!isLoading ? 'Создать' : <Spinner animation="border" size="sm"/>}
-          </Button>
-        </Row>
       </Container>
     </>
   );

@@ -1,4 +1,4 @@
-import {Container, Row, Badge} from 'react-bootstrap';
+import {Container, Row, Badge, Col} from 'react-bootstrap';
 import React from 'react';
 import {Helmet} from "react-helmet";
 import {SectionHint} from '../components';
@@ -44,6 +44,12 @@ function VacancyList() {
       buttonText: 'Создать',
       link: './create-script',
     },
+    {
+      title: 'Создание шаблона',
+      text: 'Создание шаблона резюме',
+      buttonText: 'Создать',
+      link: './create-template',
+    },
   ];
 
   return (
@@ -53,6 +59,10 @@ function VacancyList() {
       </Helmet>
 
       <Container>
+        <Row className="Header mb-2">
+          <Col>Цифровой ассистент сотрудника по подбору персонала</Col>
+        </Row>
+
         <Row className="mb-2">
           <Badge variant="dark">Заказчик вакансий</Badge>
         </Row>

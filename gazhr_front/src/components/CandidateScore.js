@@ -12,7 +12,7 @@ const getColorForPercentage = (percent) => {
 
 function CandidateScore({score}) {
   const bg = getColorForPercentage(score)
-  return <span className="CandidateScore" style={{backgroundColor: bg}} >{score}</span>;
+  return <span className="CandidateScore" style={{backgroundColor: bg, marginRight: 5}} >{score}</span>;
 }
 
 export default CandidateScore;

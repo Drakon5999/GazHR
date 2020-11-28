@@ -1,6 +1,5 @@
 .App {
     text-align: center;
-    margin: 20px;
 }
 
 .form {
@@ -55,7 +54,6 @@
 .FormStep {
     flex-direction: column;
     border-radius: 5px;
-    background-color: #fff;
     padding: 10px 10px 0 10px !important;
     margin-bottom: 20px;
 }
@@ -65,4 +63,12 @@
     flex-direction: column;
     justify-content: space-around;
     border-radius: 5px;
+}
+
+.ScriptPlay {
+    display: flex;
+}
+
+.Header {
+    padding: 20px;
 }

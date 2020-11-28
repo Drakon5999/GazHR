@@ -5,6 +5,7 @@ import Home from './Home';
 import Vacancy from './Vacancy';
 import VacancyListCustomer from './VacancyListCustomer';
 import CreateScript from './CreateScript';
+import CreateTemplate from './CreateTemplate';
 
 export {
   CreateVacancy,
@@ -14,4 +15,5 @@ export {
   Vacancy,
   CreateScript,
   VacancyListCustomer,
+  CreateTemplate,
 }

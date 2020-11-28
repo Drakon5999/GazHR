@@ -11,8 +11,9 @@ export const generateText = async (text) => {
   return response.data;
 }
 
-export const submitDescription = async (text) => {
+export const submitDescription = async (name, text) => {
   const body = {
+    name,
     text,
   };
 
@@ -34,7 +35,7 @@ export const getJobsList = async (jobId) => {
 
 export const getJobFullInfo = async (jobId) => {
   const body = {
-    job_id: jobId,
+    job_id: parseInt(jobId),
   };
 
   const [error, response] = await to(axios.post('get_job_full_info', body))
@@ -44,10 +45,82 @@ export const getJobFullInfo = async (jobId) => {
 
 export const removeJob = async (jobId) => {
   const body = {
-    job_id: jobId,
+    job_id: parseInt(jobId),
   };
 
-  const [error, response] = await to(axios.post('job_remove', body))
+  const [error, response] = await to(axios.post('delete_vacancy', body))
+  if (error || !response) throw error;
+  return response.data;
+}
+
+export const getScripts = async () => {
+  const [error, response] = await to(axios.post('get_all_scenarios'))
+  if (error || !response) throw error;
+  return response.data;
+}
+
+export const getScript = async (scriptId) => {
+  const body = {scenario_id: parseInt(scriptId)};
+  const [error, response] = await to(axios.post('get_scenario', body))
+  if (error || !response) throw error;
+  return response.data;
+}
+
+export const setScript = async (name, data) => {
+  const body = {
+    name,
+    json_scenario: data,
+  }
+  const [error, response] = await to(axios.post('create_scenario', body))
+  if (error || !response) throw error;
+  return response.data;
+}
+
+export const goToNextStep = async (candidateId) => {
+  const body = {
+    candidate_id: parseInt(candidateId),
+  }
+  const [error, response] = await to(axios.post('update_scenario_step', body))
+  if (error || !response) throw error;
+  return response.data;
+}
+
+export const denyCandidate = async (vacancyId, candidateId) => {
+  const body = {
+    resume_id: parseInt(candidateId),
+    vacancy_id: parseInt(vacancyId),
+  }
+  const [error, response] = await to(axios.post('remove_vacancy2resume', body))
+  if (error || !response) throw error;
+  return response.data;
+}
+
+export const goToOtherJob = async (candidateId) => {
+  const body = {
+    resume_id: parseInt(candidateId),
+    vacancy_id: parseInt(candidateId),
+  }
+
+  const [error, response] = await to(axios.post('update_scenario_step', body))
+  if (error || !response) throw error;
+  return response.data;
+}
+
+export const bindScriptToVacancy = async (jobId, scriptId) => {
+  const body = {
+    job_id: parseInt(jobId),
+    scenario_id: parseInt(scriptId),
+  }
+  const [error, response] = await to(axios.post('job_edit', body))
+  if (error || !response) throw error;
+  return response.data;
+}
+
+export const getCandidate = async (candidateId) => {
+  const body = {
+    candidate_id: parseInt(candidateId),
+  }
+  const [error, response] = await to(axios.post('candidate_info', body))
   if (error || !response) throw error;
   return response.data;
 }

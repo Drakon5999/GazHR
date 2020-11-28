@@ -61,6 +61,12 @@ function CreateVacancyCustomer() {
       </Helmet>
 
       <Container>
+        <Row className="Header mb-2">
+          <Col className="text-right">
+            <GoBackButton />
+          </Col>
+        </Row>
+
         {showError && (
           <Alert variant="danger" onClose={() => setShowError(false)} dismissible>
             <Alert.Heading>Ууууупс!</Alert.Heading>
@@ -69,12 +75,6 @@ function CreateVacancyCustomer() {
             </p>
           </Alert>
         )}
-
-        <Row className="mb-2">
-          <Col className="text-right">
-            <GoBackButton />
-          </Col>
-        </Row>
 
         <Row className={"form"}>
           <Col sm={8}>
