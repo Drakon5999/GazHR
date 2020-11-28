@@ -64,7 +64,7 @@ class Command(BaseCommand):
         r2.save()
         r3 = Resume(
             candidate_id=c3,
-            text="Ничего не умею",
+            text="Ничего не умею кроме Python, C++ и JS",
             tags={
                 "tools": ["Нету"],
             },
