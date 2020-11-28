@@ -3,6 +3,7 @@ from django.utils import timezone
 from main_app.models import Vacancy
 import json
 import requests
+from django.conf import settings
 
 from django.views.decorators.csrf import csrf_exempt
 
@@ -11,8 +12,16 @@ from django.views.decorators.csrf import csrf_exempt
 def submit_description(request):
     try:
         data = json.loads(request.body)
-        model_response = requests.post(
-            'http://localhost:7000/generate', data=data).json()
+        try:
+            model_response = requests.post('http://{}:{}/generate'.format(settings.MODEL_HOST, settings.MODEL_PORT), data=data).json()
+        except:
+            model_response = {
+                            "description":"текст вакансии",
+                            "suggests": [
+                                "experience",
+                                "skills"
+                            ]
+            }
 
         vacancy = Vacancy(
             source_text=data['text'],

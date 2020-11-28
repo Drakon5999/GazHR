@@ -31,10 +31,12 @@ class Vacancy(models.Model):
         help_text="Timestamp of creation"
     )
     finished_timestamp = models.DateTimeField(
-        help_text="Timestamp of expiration"
+        help_text="Timestamp of expiration",
+        null=True
     )
-    scenario_id = models.ForeignKey(Scenario, on_delete=models.CASCADE)
-    task_id = models.ForeignKey(Task, on_delete=models.CASCADE)
+    scenario_id = models.ForeignKey(Scenario, on_delete=models.CASCADE, null=True)
+    task_id = models.ForeignKey(Task, on_delete=models.CASCADE,
+        null=True)
 
 
 class Candidate(models.Model):
