@@ -26,4 +26,4 @@ def get_job_full_info(request):
                "test_files": [{"name": task.name, "test_file_url": task.file}]}
         return JsonResponse({"status": 200, "data": json.dumps(ans)})
     except BaseException as e:
-        return JsonResponse({"status": 404, "error": e})
+        return JsonResponse({"status": 404, "error": str(e)})

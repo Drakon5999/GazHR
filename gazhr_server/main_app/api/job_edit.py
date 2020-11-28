@@ -15,4 +15,4 @@ def job_edit(request):
         vacancy.save()
         return JsonResponse({"status": 200})
     except BaseException as e:
-        return JsonResponse({"status": 404, "error": e})
+        return JsonResponse({"status": 404, "error": str(e)})

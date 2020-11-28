@@ -13,4 +13,4 @@ def resume_status_change(request):
         res.save()
         return JsonResponse({"status": 200})
     except BaseException as e:
-        return JsonResponse({"status": 404, "error": e})
+        return JsonResponse({"status": 404, "error": str(e)})
