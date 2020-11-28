@@ -33,6 +33,6 @@ def get_job_full_info(request):
             "candidates": candidates,
             "test_files": [{"name": task.name, "id": task.id}] if task is not None else []
         }
-        return JsonResponse({"status": 200, "data": json.dumps(ans)})
+        return JsonResponse({"status": 200, "data": ans})
     except BaseException as e:
         return JsonResponse({"status": 404, "error": str(e)})

@@ -12,6 +12,6 @@ def get_candidate_info(request):
         data = json.loads(request.body)
         can = Candidate.objects.get(id=data["candidate_id"])
         ans = {"name": can.full_name, "additional_json": can.addition_info}
-        return JsonResponse({"status": 200, "data": json.dumps(ans)})
+        return JsonResponse({"status": 200, "data": ans})
     except BaseException as e:
         return JsonResponse({"status": 404, "error": str(e)})

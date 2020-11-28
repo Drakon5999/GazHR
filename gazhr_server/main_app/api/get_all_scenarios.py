@@ -15,6 +15,6 @@ def get_all_scenarios(request):
         for s in scenarios:
             arr.append({"scenario_id": s.id, "name": s.name})
         ans = {"all_scenarios": arr}
-        return JsonResponse({"status": 200, "data": json.dumps(ans)})
+        return JsonResponse({"status": 200, "data": ans})
     except BaseException as ex:
         return JsonResponse({"status": 404, "error": str(ex)})
