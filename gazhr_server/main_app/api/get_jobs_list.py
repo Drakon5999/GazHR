@@ -2,7 +2,10 @@ from django.http import HttpResponse, HttpResponseRedirect, Http404, JsonRespons
 
 from main_app.models import Vacancy
 
+from django.views.decorators.csrf import csrf_exempt
 
+
+@csrf_exempt
 def get_jobs_list(request):
     valancy = Vacancy.objects.all()
     return JsonResponse(

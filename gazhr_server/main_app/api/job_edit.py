@@ -4,7 +4,10 @@ from main_app.models import Vacancy
 
 import json
 
+from django.views.decorators.csrf import csrf_exempt
 
+
+@csrf_exempt
 def job_edit(request):
     try:
         data = json.loads(request.body)

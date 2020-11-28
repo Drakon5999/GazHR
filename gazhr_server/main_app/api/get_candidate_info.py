@@ -3,7 +3,10 @@ from main_app.models import Candidate
 import json
 import requests
 
+from django.views.decorators.csrf import csrf_exempt
 
+
+@csrf_exempt
 def get_candidate_info(request):
     try:
         data = json.loads(request.body)

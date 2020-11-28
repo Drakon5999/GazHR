@@ -2,7 +2,10 @@ from django.http import HttpResponse, HttpResponseRedirect, Http404, JsonRespons
 from main_app.models import Resume
 import json
 
+from django.views.decorators.csrf import csrf_exempt
 
+
+@csrf_exempt
 def resume_status_change(request):
     try:
         data = json.loads(request.data)

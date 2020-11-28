@@ -2,7 +2,10 @@ from django.http import HttpResponse, HttpResponseRedirect, Http404, JsonRespons
 from main_app.models import Vacancy, Vacancy2Resume, Resume, Candidate, Task
 import json
 
+from django.views.decorators.csrf import csrf_exempt
 
+
+@csrf_exempt
 def get_job_full_info(request):
     try:
         d = json.loads(request.body)

@@ -4,7 +4,10 @@ from main_app.models import Vacancy
 import json
 import requests
 
+from django.views.decorators.csrf import csrf_exempt
 
+
+@csrf_exempt
 def submit_description(request):
     try:
         data = json.loads(request.body)
