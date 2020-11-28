@@ -24,6 +24,7 @@ const defaultScript = {scenario_id: 0, name: 'JS разработчик'};
 
 function VacancyMinimized({description, title, id, status, scriptId}) {
   const [isShowModalWithScript, setShowModalWithScript] = useState(false);
+  const [showShare, setShowShare] = useState(false);
   const [scripts, setScripts] = useState([defaultScript]);
   const [isLoadingScripts, setLoadingScripts] = useState(false);
   const [isLoadingShare, setLoadingShare] = useState(false);
@@ -49,6 +50,11 @@ function VacancyMinimized({description, title, id, status, scriptId}) {
       history.push(`/vacancy/${id}`);
   }, [history]);
 
+  const handleCloseShare = () => {
+    setShowShare(false);
+  }
+
+
   return (
     <Row>
       <Col>
@@ -70,8 +76,7 @@ function VacancyMinimized({description, title, id, status, scriptId}) {
               </span>
 
               <Button variant="outline-success" onClick={() => {
-                setLoadingShare(true);
-                setTimeout(() => setLoadingShare(false), 2000);
+                setShowShare(true);
               }}>{isLoadingShare ? <Spinner animation="border" variant="danger" size="sm"/> : <ShareIcon/>}</Button>
             </div>
           </Card.Body>
@@ -106,6 +111,16 @@ function VacancyMinimized({description, title, id, status, scriptId}) {
           </Modal.Body>
         </Modal>
       )}
+
+      <Modal show={showShare} size="lg" onHide={handleCloseShare}>
+        <Modal.Header closeButton>
+          <Modal.Title>Размещение заявки на сервисах</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+            <Button variant="success" onClick={handleCloseShare}>HeadHunter <ShareIcon/></Button>{' '}
+            <Button variant="success" onClick={handleCloseShare}>LinkedIn <ShareIcon /></Button>
+        </Modal.Body>
+      </Modal>
     </Row>
   );
 }

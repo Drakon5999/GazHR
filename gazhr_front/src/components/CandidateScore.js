@@ -3,7 +3,7 @@ import React from 'react';
 const getColorForPercentage = (percent) => {
   const end = 100;
   const start = 0;
-  const a = percent / 100,
+  const a = percent,
     b = (end - start) * a,
     c = b + start;
 

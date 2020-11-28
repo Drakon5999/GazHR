@@ -59,6 +59,12 @@ export const getScripts = async () => {
   return response.data;
 }
 
+export const getCandidates = async () => {
+  const [error, response] = await to(axios.post('get_candidates'))
+  if (error || !response) throw error;
+  return response.data;
+}
+
 export const getScript = async (scriptId) => {
   const body = {scenario_id: parseInt(scriptId)};
   const [error, response] = await to(axios.post('get_scenario', body))
@@ -121,6 +127,17 @@ export const getCandidate = async (candidateId) => {
     candidate_id: parseInt(candidateId),
   }
   const [error, response] = await to(axios.post('candidate_info', body))
+  if (error || !response) throw error;
+  return response.data;
+}
+
+export const checkResume = async (vacancyId, resumeId) => {
+  const body = {
+    vacancy_id: parseInt(vacancyId),
+    resume_id: parseInt(resumeId),
+  }
+
+  const [error, response] = await to(axios.post('check', body))
   if (error || !response) throw error;
   return response.data;
 }

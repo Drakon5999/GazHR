@@ -78,6 +78,7 @@ function Vacancy({}) {
                   <h4>Путь к трудоустройству</h4>
                   {scriptSteps?.map((step, index) => {
                     return <VacancyStep
+                      vacancyId={id}
                       title={step.step_name}
                       isMeeting={step.is_meeting}
                       candidates={vacancy.candidates.filter(a => a.step === index)}

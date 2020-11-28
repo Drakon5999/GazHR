@@ -1,5 +1,4 @@
-import {Col, Container, Button, Row, Modal} from 'react-bootstrap';
-import {VacancyMinimized} from '../containers';
+import {Col, Container, Button, Row, Modal, Card} from 'react-bootstrap';
 import React, {useEffect, useState} from 'react';
 import {Helmet} from "react-helmet";
 import to from 'await-to-js';
@@ -7,14 +6,14 @@ import {GoBackButton, EmptyVacancies} from '../components';
 import {api} from '../services';
 import {Link} from 'react-router-dom';
 
-function VacancyList() {
-  const [vacancies, setVacancies] = useState([]);
+function Candidates() {
+  const [candidates, setCandidates] = useState([]);
 
   const getVacancies = async () => {
-    const [error, data] = await to(api.getJobsList());
+    const [error, data] = await to(api.getCandidates());
     if (error) return;
 
-    data?.jobs && setVacancies(data.jobs);
+    data?.candidates && setCandidates(data.jobs);
   };
 
   useEffect(() => {
@@ -31,7 +30,7 @@ function VacancyList() {
   return (
     <>
       <Helmet>
-        <title>Список вакансий</title>
+        <title>Кандидаты</title>
       </Helmet>
 
       <Container>
@@ -47,12 +46,14 @@ function VacancyList() {
           </Col>
         </Row>
 
-        {vacancies.length ? vacancies.map(({job_name, scenario_id, job_description, job_id, job_status}) => {
-          return <VacancyMinimized key={job_name} description={job_description} scriptId={scenario_id} id={job_id} title={job_name}/>
-        }) : <EmptyVacancies />}
+        {candidates.length ? candidates.map((candidate) => {
+          return (
+            <Card body>{candidate.name}</Card>
+          )
+        }) : <EmptyVacancies/>}
       </Container>
     </>
   );
 }
 
-export default VacancyList;
+export default Candidates;
