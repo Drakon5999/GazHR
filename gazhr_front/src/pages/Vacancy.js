@@ -8,7 +8,27 @@ import {VacancyCandidates} from '../containers';
 import {api} from '../services';
 
 function Vacancy({}) {
-  const [vacancy, setVacancy] = useState({});
+  const [vacancy, setVacancy] = useState({
+    job_name: 'строка',
+    job_description: 'обрезанное описанио',
+    job_id: 'число',
+    scenario_id: 'привязанный сценарий, число',
+    candidates: ''[
+      {
+        name: 'ФИО',
+        score: 'число',
+        candidate_id: 'число',
+        status: 'поле в котором можно хранить на каком сейчас этапе кандидат, для сценариев',
+      }
+      ],
+    test_files: ''[
+      {
+        name: 'название файл',
+        test_file_url: 'url файл',
+      }
+      ]
+
+  });
   const [isShowError, setShowError] = useState(false);
 
   let {id} = useParams();
@@ -48,7 +68,7 @@ function Vacancy({}) {
 
         <Row className="mb-2">
           <Col className="text-right">
-            <GoBackButton />
+            <GoBackButton/>
           </Col>
         </Row>
 
@@ -56,7 +76,8 @@ function Vacancy({}) {
           <Col><p>{vacancy.job_description || 'Описание'}</p></Col>
 
           <Col>
-            <VacancyCandidates candidates={vacancy.candidates} handleNextStep={handleNextStep} handleDeny={handleDeny} />
+            <VacancyCandidates candidates={vacancy.candidates || []} handleNextStep={handleNextStep}
+                               handleDeny={handleDeny}/>
           </Col>
         </Row>
       </Container>
