@@ -1,21 +1,36 @@
-import {Container, Row} from 'react-bootstrap';
+import {Container, Row, Badge} from 'react-bootstrap';
 import React from 'react';
 import {Helmet} from "react-helmet";
 import {SectionHint} from '../components';
 
 function VacancyList() {
-  const sections = [
+  const customerFeatures = [
     {
       title: 'Список ваканский',
-      text: 'Этот раздел для заказчиков. Здесь он сможет найти ранее созданные вакансии и увидеть ход работы над ними.',
+      text: 'Отображается список ранее созданных вакансий и ход работы над ними.',
       buttonText: 'Показать список',
       link: './vacancy',
     },
     {
       title: 'Создание вакансий',
-      text: 'Этот раздел для заказчиков. Здесь он сможет создать заявка на вакансию.',
+      text: 'Создание заявка на нового сотрудника в свободной форме с подсказками.',
       buttonText: 'Создать',
       link: './create-vacancy',
+    },
+  ];
+
+  const hrFeatures = [
+    {
+      title: 'Список ваканский',
+      text: 'Отображение всех активных заявок',
+      buttonText: 'Показать список',
+      link: './hr-vacancy',
+    },
+    {
+      title: 'Список соискателей',
+      text: 'Список свободных агентов, готовых откликнуться на вакансию',
+      buttonText: 'Показать список',
+      link: './candidate',
     },
   ];
 
@@ -26,8 +41,20 @@ function VacancyList() {
       </Helmet>
 
       <Container>
-        <Row>
-          {sections.map(section => <SectionHint key={section.title} {...section} />)}
+        <Row className="mb-2">
+          <Badge variant="dark">Заказчик вакансий</Badge>
+        </Row>
+
+        <Row className="mb-2">
+          {customerFeatures.map(feature => <SectionHint key={feature.title} {...feature} />)}
+        </Row>
+
+        <Row className="mb-2">
+          <Badge variant="dark">Сотрудник HR</Badge>
+        </Row>
+
+        <Row className="mb-2">
+          {hrFeatures.map(feature => <SectionHint key={feature.title} {...feature} />)}
         </Row>
       </Container>
     </>

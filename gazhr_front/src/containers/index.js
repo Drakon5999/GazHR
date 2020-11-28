@@ -1,11 +1,11 @@
-import RecommendSet from './RecommendSet';
 import GeneratedText from './GeneratedText';
 import TextEditor from './TextEditor';
 import VacancyMinimized from './VacancyMinimized';
+import VacancyCandidates from './VacancyCandidates';
 
 export {
-  RecommendSet,
   GeneratedText,
   TextEditor,
   VacancyMinimized,
+  VacancyCandidates,
 }
