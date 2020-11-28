@@ -1,18 +1,18 @@
 version: '3.5'
 
 services:
-  gazhr_server_db:
-    image: postgres
-    environment:
-      - DOCKER=True
-      - POSTGRES_USER=gazhr
-      - POSTGRES_PASSWORD=Iamgenius
-      - POSTGRES_DB=gazhr_db
-      - PGDATA=../pgdata
-    ports:
-      - "54320:5432"
-    networks:
-      - net
+  #gazhr_server_db:
+  #  image: postgres
+  #  environment:
+  #    - DOCKER=True
+  #    - POSTGRES_USER=gazhr
+  #    - POSTGRES_PASSWORD=Iamgenius
+  #    - POSTGRES_DB=gazhr_db
+  #    - PGDATA=../pgdata
+  #  ports:
+  #    - "54320:5432"
+  #  networks:
+  #    - net
   gazhr_server:
     build: gazhr_server
     image: gazhr_server
@@ -21,8 +21,8 @@ services:
       - .:/gazhr_server
     ports:
       - "8000:8000"
-    depends_on:
-      - gazhr_server_db
+    #depends_on:
+    #  - gazhr_server_db
     networks:
      - net
 
