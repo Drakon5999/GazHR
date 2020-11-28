@@ -183,15 +183,15 @@ def resume_score(vacancie, resume):
                 score += 1.0 / key_skills.get(s, 1e6)
                 word_score += 1.0 / key_skills.get(s, 1e6)
             elif s in key_skills.keys():
-                q = 1.0 / (key_skills.get(s, 1e5) + np.random.rand(1)[0]*1e5 - 0.5e5)
+                q = 1.0 / (key_skills.get(s, 1e3) + np.random.rand(1)[0]*1e4 - 0.5e3)
                 score += q
                 word_score += q
             else:
-                q = 1.0 / (np.random.rand(1)[0]*1e7 - 0.5e7)
+                q = 1.0 / (np.random.rand(1)[0]*1e4 - 0.5e4)
                 score += q
                 word_score += q
         html_str += ' ' + _colorize(s, word_score, 1.0)
 
     z = 1.0/(1.0 + np.exp(-score)) 
 
-    return {'score': z, 'color_html': html_str}
+    return {'score': float(0.001 * int(1000.0*z)), 'color_html': html_str}
