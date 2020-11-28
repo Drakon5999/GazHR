@@ -194,4 +194,4 @@ def resume_score(vacancie, resume):
 
     z = 1.0/(1.0 + np.exp(-score)) 
 
-    return {'score': z, 'color_html': html_str}
+    return {'score': float(0.001 * int(1000.0*z)), 'color_html': html_str}
