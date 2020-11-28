@@ -3,7 +3,7 @@ import React, {useEffect, useState} from 'react';
 import {Helmet} from "react-helmet";
 import {useParams} from 'react-router-dom';
 import to from 'await-to-js';
-import {GoBackButton} from '../components';
+import {GoBackButton, VacancyText} from '../components';
 import {VacancyCandidates} from '../containers';
 import {api} from '../services';
 import EmptyVacancy from '../components/EmptyVacancy';
@@ -76,7 +76,7 @@ function Vacancy({}) {
         <Row>
           {!isShowError ? (
               <>
-                <Col><p>{vacancy.job_description || 'Описание'}</p></Col>
+                <VacancyText>{vacancy.job_description || 'Описание'}</VacancyText>
 
                 <Col>
                   <VacancyCandidates candidates={vacancy.candidates || []} handleNextStep={handleNextStep}

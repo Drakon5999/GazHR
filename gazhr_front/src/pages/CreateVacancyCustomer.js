@@ -35,7 +35,7 @@ const useUserEdit = () => {
   return [text, onChange, suggests, generatedText, clear]
 };
 
-function CreateVacancy() {
+function CreateVacancyCustomer() {
   const [text, onChange, suggests, generatedText, clear] = useUserEdit();
   const [isLoading, setLoading] = useState(false);
   const [showError, setShowError] = useState(false);
@@ -105,4 +105,4 @@ function CreateVacancy() {
   );
 }
 
-export default CreateVacancy;
+export default CreateVacancyCustomer;

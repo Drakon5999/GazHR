@@ -3,6 +3,7 @@ import TextEditor from './TextEditor';
 import VacancyMinimized from './VacancyMinimized';
 import VacancyCandidates from './VacancyCandidates';
 import VacancyCustomerMinimized from './VacancyCustomerMinimized';
+import ScriptSteps from './ScriptSteps';
 
 export {
   GeneratedText,
@@ -10,4 +11,5 @@ export {
   VacancyMinimized,
   VacancyCandidates,
   VacancyCustomerMinimized,
+  ScriptSteps,
 }

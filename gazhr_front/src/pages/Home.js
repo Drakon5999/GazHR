@@ -15,7 +15,7 @@ function VacancyList() {
       title: 'Создание вакансий',
       text: 'Создание заявка на нового сотрудника в свободной форме с подсказками.',
       buttonText: 'Создать',
-      link: './create-vacancy',
+      link: './create-vacancy-customer',
     },
   ];
 
@@ -27,10 +27,22 @@ function VacancyList() {
       link: './vacancy',
     },
     {
+      title: 'Создание вакансий',
+      text: 'Создание заявка на нового сотрудника в свободной форме с подсказками.',
+      buttonText: 'Создать',
+      link: './create-vacancy',
+    },
+    {
       title: 'Список соискателей',
       text: 'Список свободных агентов, готовых откликнуться на вакансию',
       buttonText: 'Показать список',
       link: './candidate',
+    },
+    {
+      title: 'Создание сценарция',
+      text: 'Создвание сценария для ведения кандидатов по вакансии',
+      buttonText: 'Создать',
+      link: './create-script',
     },
   ];
 

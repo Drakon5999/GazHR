@@ -8,7 +8,7 @@ import {api} from '../services';
 import {Link} from 'react-router-dom';
 
 function VacancyList() {
-  const [vacancies, setVacancies] = useState([]); //TODO удалить значение
+  const [vacancies, setVacancies] = useState([{job_name:'test', job_description: 'sndfjasdf', job_status:'warning'}]); //TODO удалить значение
 
   const getVacancies = async () => {
     const [error, data] = await to(api.getJobsList());
