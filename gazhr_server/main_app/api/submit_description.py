@@ -25,7 +25,7 @@ def submit_description(request):
 
         vacancy = Vacancy(
             source_text=data['text'],
-            transfored_text=model_response['description'],
+            transformed_text=model_response['description'],
             created_timestamp=timezone.now()
         )
         vacancy.save()

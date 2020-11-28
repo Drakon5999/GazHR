@@ -12,7 +12,7 @@ def job_edit(request):
     try:
         data = json.loads(request.body)
         job_id = data.pop("job_id")
-        vacancy = Vacancy.object.filter(id__in=[job_id])
+        vacancy = Vacancy.objects.filter(id__in=[job_id]).get()
         for key, value in data.items():
             setattr(vacancy, key, value)
         vacancy.save()

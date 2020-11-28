@@ -25,7 +25,9 @@ def get_job_full_info(request):
         task = Task.objects.get(vacancy.task_id) if vacancy.task_id is not None else None
 
         ans = {
-            "job_id": job_id, "job_name": vacancy.name, "job_description": vacancy.source_text,
+            "job_id": job_id, "name": vacancy.name,
+            "transformed_text": vacancy.transformed_text,
+            "source_text": vacancy.source_text,
             "scenario_id": vacancy.scenario_id, "candidates": candidates,
             "test_files": [{"name": task.name, "test_file_url": task.file}] if task is not None else []
         }

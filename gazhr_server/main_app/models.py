@@ -24,7 +24,7 @@ class Task(models.Model):
 class Vacancy(models.Model):
     name = models.TextField(help_text="Vacancy name")
     source_text = models.TextField(help_text="Source text of vacancy")
-    transfored_text = models.TextField(
+    transformed_text = models.TextField(
         help_text="Text of vacancy after transformation"
     )
     created_timestamp = models.DateTimeField(
