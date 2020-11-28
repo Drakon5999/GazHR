@@ -2,10 +2,13 @@ from django.http import HttpResponse, HttpResponseRedirect, Http404, JsonRespons
 from main_app.models import Scenario
 import json
 
+from django.views.decorators.csrf import csrf_exempt
 
+
+@csrf_exempt
 def get_scenario(request):
     try:
-        data = json.loads(request.data)
+        data = json.loads(request.body)
         s = Scenario.objects.get(id=data['scenario_id'])
         return JsonResponse({"status": 200, "data": s.json_scenario})
     except BaseException as e:

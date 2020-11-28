@@ -7,12 +7,13 @@ class Scenario(models.Model):
     created_timestamp = models.DateTimeField(
         help_text="Timestamp of creation"
     )
+    name = models.TextField(help_text="Scenario name", default="")
     json_scenario = models.JSONField(null=True)
 
 
 class Task(models.Model):
     name = models.TextField(help_text="Task text")
-    path = models.TextField(
+    task_file = models.FileField(
         help_text="Path to task documents",
         default=None, null=True
     )
@@ -24,17 +25,21 @@ class Task(models.Model):
 class Vacancy(models.Model):
     name = models.TextField(help_text="Vacancy name")
     source_text = models.TextField(help_text="Source text of vacancy")
-    transfored_text = models.TextField(
+    transformed_text = models.TextField(
         help_text="Text of vacancy after transformation"
     )
     created_timestamp = models.DateTimeField(
         help_text="Timestamp of creation"
     )
     finished_timestamp = models.DateTimeField(
-        help_text="Timestamp of expiration"
+        help_text="Timestamp of expiration",
+        null=True
     )
-    scenario_id = models.ForeignKey(Scenario, on_delete=models.CASCADE)
-    task_id = models.ForeignKey(Task, on_delete=models.CASCADE)
+    scenario_id = models.ForeignKey(
+        Scenario, on_delete=models.CASCADE, null=True)
+    task_id = models.ForeignKey(Task, on_delete=models.CASCADE,
+                                null=True)
+    transformed_data = models.JSONField(null=True)
 
 
 class Candidate(models.Model):
@@ -43,6 +48,7 @@ class Candidate(models.Model):
     created_timestamp = models.DateTimeField(
         help_text="Timestamp of creation"
     )
+    scenario_step = models.IntegerField(default=0)
 
 
 class Resume(models.Model):

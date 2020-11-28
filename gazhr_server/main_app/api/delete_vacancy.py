@@ -8,12 +8,10 @@ from django.views.decorators.csrf import csrf_exempt
 
 
 @csrf_exempt
-def generate_description(request):
+def delete_vacancy(request):
     try:
-        data = json.loads(request.body)
-        model_response = requests.post(
-            'http://{}:{}/generate'.format(settings.MODEL_HOST, settings.MODEL_PORT), json=data).json()
-
-        return JsonResponse({"status": 200, "data": model_response})
+        data = json.loads(request.data)
+        Vacancy.objects.filter(id=data['job_id']).delete()
+        return JsonResponse({"status": 200})
     except BaseException as e:
         return JsonResponse({"status": 404, "error": str(e)})

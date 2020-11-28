@@ -2,7 +2,10 @@ from django.http import HttpResponse, HttpResponseRedirect, Http404, JsonRespons
 from main_app.models import Vacancy, Vacancy2Resume, Resume, Candidate, Task
 import json
 
+from django.views.decorators.csrf import csrf_exempt
 
+
+@csrf_exempt
 def get_job_full_info(request):
     try:
         d = json.loads(request.body)
@@ -11,19 +14,25 @@ def get_job_full_info(request):
         vac_2_can = Vacancy2Resume.objects.filter(vacancy_id=job_id)
         resumes = []
         for can in vac_2_can:
-            resumes.append(Resume.objects.get(id=can.resume_id))
+            resumes.append(can.resume_id)
         candidates = []
         for x in resumes:
-            cand = Candidate.objects.get(x.candidate_id)
-            tmp = {"candidate_id": x.candidate_id, "status": x.status,
-                   "name": cand.full_name, "score": x.score}
+            cand = x.candidate_id
+            tmp = {"candidate_id": x.candidate_id.id, "status": x.status,
+                   "name": cand.full_name, "score": x.score, "step": cand.scenario_step}
             candidates.append(tmp)
 
-        task = Task.objects.get(vacancy.task_id)
+        task = vacancy.task_id
 
-        ans = {"job_id": job_id, "job_name": vacancy.name, "job_description": vacancy.source_text,
-               "scenario_id": vacancy.scenario_id, "candidates": candidates,
-               "test_files": [{"name": task.name, "test_file_url": task.file}]}
-        return JsonResponse({"status": 200, "data": json.dumps(ans)})
+        ans = {
+            "job_id": job_id,
+            "name": vacancy.name,
+            "transformed_text": vacancy.transformed_text,
+            "source_text": vacancy.source_text,
+            "scenario_id": vacancy.scenario_id.id if vacancy.scenario_id is not None else None,
+            "candidates": candidates,
+            "test_files": [{"name": task.name, "id": task.id}] if task is not None else []
+        }
+        return JsonResponse({"status": 200, "data": ans})
     except BaseException as e:
         return JsonResponse({"status": 404, "error": str(e)})
