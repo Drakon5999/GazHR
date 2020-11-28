@@ -63,8 +63,6 @@ INSTALLED_APPS = [
     'corsheaders',
 ]
 
-if DEBUG is True:
-    INSTALLED_APPS += ('corsheaders', )
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
