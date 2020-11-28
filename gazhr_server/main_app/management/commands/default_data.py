@@ -41,7 +41,7 @@ class Command(BaseCommand):
         c3.save()
         r1 = Resume(
             candidate_id=c1,
-            text="Возмите меня куда нибудь, я не ел уже неделю",
+            text="Возмите меня куда нибудь, я не ел уже неделю. Я умению C++, C, Python, Java.",
             tags={
                 "languages": ["Java", "English"],
                 "tools": ["Компьютер"],
@@ -52,7 +52,7 @@ class Command(BaseCommand):
         r1.save()
         r2 = Resume(
             candidate_id=c2,
-            text="Поднял уже 3 компании",
+            text="Поднял уже 3 IT компании. Мы создали продукты BigData с помощью C++",
             tags={
                 "languages": ["English"],
                 "tools": ["Компьютер"],
