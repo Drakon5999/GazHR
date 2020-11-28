@@ -57,11 +57,13 @@ def resume_score(vacancie, resume):
     a = get_experience(vacancie)
     b = get_experience(resume)
 
-    score = float(b >= a)
+    score = -float(b < a)
 
     for s in resume_words:
         for v in vacancie_words:
             if (s == v):
                 score += 1.0 / key_skills.get(s, 1e6)
 
-    return {'score': int(score * 5000.0)}
+    z = 1.0/(1.0 + np.exp(-score)) 
+
+    return {'score': z}
