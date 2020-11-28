@@ -42,7 +42,7 @@ RUN conda install -y -c pytorch \
  && conda clean -ya
 
 #install opencv
-RUN pip install flask pandas sklearn transformers nltk joblib
+RUN pip install flask pandas sklearn transformers nltk joblib --upgrade
 
 COPY . /app
 

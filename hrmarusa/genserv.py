@@ -3,12 +3,19 @@ import pandas as pd
 import nltk
 import numpy as np
 
-analyt_vac = pd.read_csv('analyt_vac.csv')
-prog_vac = pd.read_csv('prog_vac.csv')
-design_vac = pd.read_csv('design_vac.csv')
 
-full_set = pd.concat([analyt_vac,prog_vac,design_vac], \
-    ignore_index=True).reset_index(drop=True)
+try:
+    analyt_vac = pd.read_csv('analyt_vac.csv')
+    prog_vac = pd.read_csv('prog_vac.csv')
+    design_vac = pd.read_csv('design_vac.csv')
+
+    full_set = pd.concat([analyt_vac,prog_vac,design_vac], \
+        ignore_index=True).reset_index(drop=True)
+except:
+    full_set = pd.DataFrame()
+    analyt_vac = pd.DataFrame()
+    prog_vac = pd.DataFrame()
+    design_vac = pd.DataFrame()
 
 def get_common_skills(df):
     q = []
