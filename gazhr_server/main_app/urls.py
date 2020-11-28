@@ -23,6 +23,7 @@ from main_app.api.update_scenario_step import update_scenario_step
 from main_app.api.send_email import send_email
 from main_app.api.add_candidate import add_candidate
 from main_app.api.join_vacancy_with_resume import join_vacancy_with_resume
+from main_app.api.get_all_candidates import get_all_candidates
 
 urlpatterns = [
     path("api/get_jobs_list", get_jobs_list, name="api/get_jobs_list"),
@@ -59,5 +60,7 @@ urlpatterns = [
     path("api/add_candidate", add_candidate, name="api/add_candidate"),
     path("api/join_vacancy_with_resume", join_vacancy_with_resume,
          name="api/join_vacancy_with_resume"),
+    path("api/get_all_candidates", get_all_candidates,
+         name="api/get_all_candidates"),
 
 ]
