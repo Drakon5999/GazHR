@@ -125,7 +125,6 @@ def generate_template(txt):
                 skills.append(sk)
                 typevac = 'разработчик ' + sk
                 dont_include = True
-                break
 
         for sk in skill_entities_modeler:
             if s.lower().find(sk) > 0:
@@ -133,7 +132,6 @@ def generate_template(txt):
                 dont_include = True
                 if typevac is None:
                     typevac = 'аналитик'
-                break
 
         for sk in skill_entities_designer:
             if s.lower().find(sk) > 0:
@@ -141,7 +139,6 @@ def generate_template(txt):
                 dont_include = True
                 if typevac is None:
                     typevac = 'дизайнер интерфейсов (' + sk + ')'
-                break
 
         if typevac is None:
             typevac = 'аналитик'
