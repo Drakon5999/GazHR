@@ -12,9 +12,9 @@ def genvac():
 @app.route('/check', methods=['GET', 'POST'])
 def vacanciecheck():
     json_data = request.json
-    vacancie = json_data["vacancie"]
+    vacancy = json_data["vacancy"]
     resume = json_data["resume"]
-    return jsonify(resume_score(vacancie, resume))
+    return jsonify(resume_score(vacancy, resume))
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=7000)
