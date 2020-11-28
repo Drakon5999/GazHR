@@ -7,7 +7,7 @@ class Scenario(models.Model):
     created_timestamp = models.DateTimeField(
         help_text="Timestamp of creation"
     )
-    name = models.TextField(help_text="Scenario name")
+    name = models.TextField(help_text="Scenario name", default="")
     json_scenario = models.JSONField(null=True)
 
 
@@ -35,9 +35,11 @@ class Vacancy(models.Model):
         help_text="Timestamp of expiration",
         null=True
     )
-    scenario_id = models.ForeignKey(Scenario, on_delete=models.CASCADE, null=True)
+    scenario_id = models.ForeignKey(
+        Scenario, on_delete=models.CASCADE, null=True)
     task_id = models.ForeignKey(Task, on_delete=models.CASCADE,
-        null=True)
+                                null=True)
+    transformed_data = models.JSONField(null=True)
 
 
 class Candidate(models.Model):

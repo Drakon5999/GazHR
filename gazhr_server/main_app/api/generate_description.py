@@ -11,7 +11,8 @@ from django.views.decorators.csrf import csrf_exempt
 def generate_description(request):
     try:
         data = json.loads(request.body)
-        model_response = requests.post('http://{}:{}/generate'.format(settings.MODEL_HOST, settings.MODEL_PORT), json=data).json()
+        model_response = requests.post(
+            'http://{}:{}/generate'.format(settings.MODEL_HOST, settings.MODEL_PORT), json=data).json()
 
         return JsonResponse({"status": 200, "data": model_response})
     except BaseException as e:
