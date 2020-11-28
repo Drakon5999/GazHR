@@ -11,6 +11,7 @@ def update_scenario_step(request):
         data = json.loads(request.body)
         candidate = Candidate.objects.get(id=data["candidate_id"])
         candidate.scenario_step += 1
+        candidate.save()
         return JsonResponse({"status": 200})
     except BaseException as e:
         return JsonResponse({"status": 404, "error": str(e)})
