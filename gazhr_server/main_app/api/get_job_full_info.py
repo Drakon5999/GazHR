@@ -29,7 +29,7 @@ def get_job_full_info(request):
             "name": vacancy.name,
             "transformed_text": vacancy.transformed_text,
             "source_text": vacancy.source_text,
-            "scenario_id": vacancy.scenario_id.id,
+            "scenario_id": vacancy.scenario_id.id if vacancy.scenario_id is not None else None,
             "candidates": candidates,
             "test_files": [{"name": task.name, "id": task.id}] if task is not None else []
         }
