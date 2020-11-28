@@ -28,14 +28,7 @@ config.read(config_paths)
 
 DOMAIN = config.get('global', 'domain')
 
-ALLOWED_HOSTS = [
-    '62.113.113.175',
-    '127.0.0.1',
-    'localhost',
-    '0.0.0.0',
-    '.' + DOMAIN,
-    '87.239.110.212',
-]
+ALLOWED_HOSTS = ['*']
 
 
 # Quick-start development settings - unsuitable for production
@@ -46,8 +39,6 @@ SECRET_KEY = 'ydbpw#xz)70g6%hxd!78t1&0l71l1oqyn#989+cfj)1pq36iwp'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
-ALLOWED_HOSTS = []
 
 
 # Application definition
