@@ -17,7 +17,7 @@ def check(request):
         tmp_data = {"vacancy": vacancy.transformed_text, "resume": resume.text}
         model_response = requests.post(
             'http://{}:{}/check'.format(settings.MODEL_HOST, settings.MODEL_PORT), json=tmp_data).json()
-        v2r = Vacancy2Resume.get(vacancy_id=vacancy, resume_id=resume)
+        v2r = Vacancy2Resume.objects.get(vacancy_id=vacancy, resume_id=resume)
         v2r.score = model_response["score"]
         v2r.save()
         return JsonResponse({
