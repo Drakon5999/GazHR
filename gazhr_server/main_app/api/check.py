@@ -22,7 +22,7 @@ def check(request):
         v2r.save()
         return JsonResponse({
             'status': 200,
-            'job_id': model_response["score"]
+            **model_response
         })
     except BaseException as e:
         return JsonResponse({"status": 404, "error": str(e)})
