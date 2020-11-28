@@ -187,7 +187,7 @@ def resume_score(vacancie, resume):
                 score += q
                 word_score += q
             else:
-                q = np.random.rand(1)[0]*1e7 - 0.5e7
+                q = 1.0 / (np.random.rand(1)[0]*1e7 - 0.5e7)
                 score += q
                 word_score += q
         html_str += ' ' + _colorize(s, word_score, 1.0)
