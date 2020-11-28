@@ -19,7 +19,7 @@ def get_job_full_info(request):
         for x in resumes:
             cand = x.candidate_id
             tmp = {"candidate_id": x.candidate_id.id, "status": x.status,
-                   "name": cand.full_name, "score": x.score}
+                   "name": cand.full_name, "score": x.score, "step": cand.scenario_step}
             candidates.append(tmp)
 
         task = vacancy.task_id
