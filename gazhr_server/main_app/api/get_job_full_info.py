@@ -2,6 +2,10 @@ from django.http import HttpResponse, HttpResponseRedirect, Http404, JsonRespons
 from main_app.models import Vacancy, Vacancy2Resume, Resume, Candidate, Task
 import json
 
+from django.conf import settings
+import requests
+
+
 from django.views.decorators.csrf import csrf_exempt
 
 
@@ -17,9 +21,14 @@ def get_job_full_info(request):
             resumes.append(can.resume_id)
         candidates = []
         for x in resumes:
+            tmp_data = {"vacancy": vacancy.transformed_text,
+                        "resume": x.text}
+            model_response = requests.post(
+                'http://{}:{}/check'.format(settings.MODEL_HOST, settings.MODEL_PORT), json=tmp_data).json()
+
             cand = x.candidate_id
             tmp = {"candidate_id": x.candidate_id.id, "status": x.status,
-                   "name": cand.full_name, "score": x.score, "step": cand.scenario_step}
+                   "name": cand.full_name, "score": model_response["score"], "step": cand.scenario_step}
             candidates.append(tmp)
 
         task = vacancy.task_id
