@@ -12,8 +12,8 @@ from django.views.decorators.csrf import csrf_exempt
 def check(request):
     try:
         data = json.loads(request.body)
-        vacancy = Vacancy.object.get(id=data["vacancy_id"])
-        resume = Resume.object.get(id=data["resume_id"])
+        vacancy = Vacancy.objects.get(id=data["vacancy_id"])
+        resume = Resume.objects.get(id=data["resume_id"])
         tmp_data = {"vacancy": vacancy.transformed_text, "resume": resume.text}
         model_response = requests.post(
             'http://{}:{}/check'.format(settings.MODEL_HOST, settings.MODEL_PORT), json=tmp_data).json()
