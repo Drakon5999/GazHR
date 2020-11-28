@@ -9,7 +9,7 @@ function VacancyList() {
       title: 'Список ваканский',
       text: 'Отображается список ранее созданных вакансий и ход работы над ними.',
       buttonText: 'Показать список',
-      link: './vacancy',
+      link: './vacancy-customer',
     },
     {
       title: 'Создание вакансий',
@@ -24,7 +24,7 @@ function VacancyList() {
       title: 'Список ваканский',
       text: 'Отображение всех активных заявок',
       buttonText: 'Показать список',
-      link: './hr-vacancy',
+      link: './vacancy',
     },
     {
       title: 'Список соискателей',

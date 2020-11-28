@@ -27,7 +27,8 @@ export const getJobsList = async (jobId) => {
     job_id: jobId,
   };
 
-  const [error, response] = await to(axios.post('get_jobs_list', body))
+  const [error, response] = await to(axios.get('get_jobs_list', body))
+
   if (error || !response) throw error;
   return response.data;
 }
@@ -42,24 +43,12 @@ export const getJobFullInfo = async (jobId) => {
   return response.data;
 }
 
-// {
-//   "job_name": строка,
-//   "job_description": обрезанное описание
-//   "job_id": число,
-//   "scenario_id": привязанный сценарий, число
-//   "candidates": [
-//     {
-//       "name": ФИО
-//       "score": число
-//       "candidate_id": число
-//       "status": поле в котором можно хранить на каком сейчас этапе кандидат, для сценариев
-//     }
-//   ]
-//
-//   "test_files": [
-//     {
-//       "name": название файла
-//       "test_file_url": url файла
-//     }
-//   ]
-// }
+export const removeJob = async (jobId) => {
+  const body = {
+    job_id: jobId,
+  };
+
+  const [error, response] = await to(axios.post('job_remove', body))
+  if (error || !response) throw error;
+  return response.data;
+}

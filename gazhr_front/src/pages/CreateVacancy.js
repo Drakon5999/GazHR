@@ -19,8 +19,8 @@ const useUserEdit = () => {
     timerId.current = setTimeout(async () => {
       const [error, data] = await to(api.generateText());
       if (!error && data) {
-        setGeneratedText(data.description);
-        setSuggests(data.suggests);
+        setGeneratedText(data?.data?.description || '');
+        setSuggests(data?.data?.suggests || ['Текст']);
       }
     }, 3000);
   }

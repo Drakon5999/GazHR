@@ -1,6 +1,5 @@
 .App {
     text-align: center;
-    background-color: #ffffff;
     margin: 20px;
 }
 .form {
@@ -13,9 +12,8 @@
     margin-bottom: 20px;
 }
 .GeneratedText {
-    margin-top: 10px;
-    border: 1px solid #ced4da;
-    border-radius: 0.25rem;
+    width: 100%;
+    height: 100%;
 }
 .SectionHint {
     margin-right: 10px;
@@ -27,4 +25,21 @@
 }
 .textSection {
     flex: 1;
+}
+.Candidate {
+    display: flex !important;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: center;
+    align-items: center;
+}
+.CandidateScore {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 700;
 }

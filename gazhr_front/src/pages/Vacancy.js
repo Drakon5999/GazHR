@@ -1,4 +1,4 @@
-import {Alert, Col, Container, Row} from 'react-bootstrap';
+import {Col, Container, Row} from 'react-bootstrap';
 import React, {useEffect, useState} from 'react';
 import {Helmet} from "react-helmet";
 import {useParams} from 'react-router-dom';
@@ -6,6 +6,7 @@ import to from 'await-to-js';
 import {GoBackButton} from '../components';
 import {VacancyCandidates} from '../containers';
 import {api} from '../services';
+import EmptyVacancy from '../components/EmptyVacancy';
 
 function Vacancy({}) {
   const [vacancy, setVacancy] = useState({
@@ -13,10 +14,16 @@ function Vacancy({}) {
     job_description: 'обрезанное описанио',
     job_id: 'число',
     scenario_id: 'привязанный сценарий, число',
-    candidates: ''[
+    candidates: [
       {
-        name: 'ФИО',
-        score: 'число',
+        name: 'Иванов Иван Иванович',
+        score: 99,
+        candidate_id: 'число',
+        status: 'поле в котором можно хранить на каком сейчас этапе кандидат, для сценариев',
+      },
+      {
+        name: 'Петров Петр Петрович',
+        score: 23,
         candidate_id: 'число',
         status: 'поле в котором можно хранить на каком сейчас этапе кандидат, для сценариев',
       }
@@ -37,10 +44,10 @@ function Vacancy({}) {
     (async () => {
       const [error, data] = await to(api.getJobFullInfo(id));
       if (error) {
-        setShowError(true);
+        // setShowError(true);
         return;
       }
-      setVacancy(data);
+      // setVacancy(data);
     })()
   }, []);
 
@@ -59,26 +66,26 @@ function Vacancy({}) {
       </Helmet>
 
       <Container>
-        {isShowError && (
-          <Alert variant="danger" onClose={() => setShowError(false)} dismissible>
-            <Alert.Heading>Ууууупс!</Alert.Heading>
-            <p>Вакансия не найдена или ещё какая ошибка, мы не знаем</p>
-          </Alert>
-        )}
-
         <Row className="mb-2">
           <Col className="text-right">
             <GoBackButton/>
           </Col>
         </Row>
 
-        <Row>
-          <Col><p>{vacancy.job_description || 'Описание'}</p></Col>
 
-          <Col>
-            <VacancyCandidates candidates={vacancy.candidates || []} handleNextStep={handleNextStep}
-                               handleDeny={handleDeny}/>
-          </Col>
+        <Row>
+          {!isShowError ? (
+              <>
+                <Col><p>{vacancy.job_description || 'Описание'}</p></Col>
+
+                <Col>
+                  <VacancyCandidates candidates={vacancy.candidates || []} handleNextStep={handleNextStep}
+                                     handleDeny={handleDeny}/>
+                </Col>
+              </>
+            ) : (
+              <Col><EmptyVacancy /></Col>
+          )}
         </Row>
       </Container>
     </>
