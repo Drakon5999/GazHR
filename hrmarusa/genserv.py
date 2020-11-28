@@ -116,7 +116,7 @@ def generate_template(txt):
     skills = []
     pos_skills_start, pos_skills_end = 0,0
 
-    typevac = 'аналитик'            
+    typevac = None            
     for s in sentences:
         dont_include = False
         
@@ -131,13 +131,20 @@ def generate_template(txt):
             if s.lower().find(sk) > 0:
                 skills.append(sk)
                 dont_include = True
-                typevac = 'аналитик'
+                if typevac is None:
+                    typevac = 'аналитик'
+                break
 
         for sk in skill_entities_designer:
             if s.lower().find(sk) > 0:
                 skills.append(sk)
                 dont_include = True
-                typevac = 'дизайнер интерфейсов (' + sk + ')'
+                if typevac is None:
+                    typevac = 'дизайнер интерфейсов (' + sk + ')'
+                break
+
+        if typevac is None:
+            typevac = 'аналитик'
         
         for ys in year_entities:
             if len(re.findall(r"("+ys+")", s)) > 0:
@@ -157,7 +164,11 @@ def generate_template(txt):
     if len(duties) > 0:
         duties_list.append('В обязанности входит: ' + duties)
 
-    new_texts = [team_name + ' требуется ' + typevac] + duties_list + new_texts + [get_offer()]
+    experience_str = ''
+    if len(experience) > 0
+        experience_str = 'Желаемый опыт работы: ' + experience[0]
+
+    new_texts = [team_name + ' требуется ' + typevac] + duties_list + [experience_str] + new_texts + [get_offer()]
     warnings = []
     if len(skills) == 0:
         warnings.append(('не указаны требуемые навыки', \
@@ -167,10 +178,10 @@ def generate_template(txt):
             pos_skills_start, pos_skills_end))
 
     return {
-        'description': '. '.join(new_texts),
+        'description': '. '.join(new_texts).replace('. .','.'),
         'hh' : {
             'name': typevac,
-            'description': '. '.join(new_texts),
+            'description': '. '.join(new_texts).replace('. .','.'),
             'skills': skills,
             'experience': experience
         },
