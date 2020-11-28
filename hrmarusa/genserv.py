@@ -5,9 +5,9 @@ import numpy as np
 
 
 try:
-    analyt_vac = pd.read_csv('/app/hrmarusa/analyt_vac.csv')
-    prog_vac = pd.read_csv('/app/hrmarusa/prog_vac.csv')
-    design_vac = pd.read_csv('/app/hrmarusa/design_vac.csv')
+    analyt_vac = pd.read_csv('/app/analyt_vac.csv')
+    prog_vac = pd.read_csv('/app/prog_vac.csv')
+    design_vac = pd.read_csv('/app/design_vac.csv')
 
     full_set = pd.concat([analyt_vac,prog_vac,design_vac], \
         ignore_index=True).reset_index(drop=True)
