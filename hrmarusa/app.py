@@ -4,7 +4,7 @@ app = Flask(__name__)
 
 @app.route('/generate', methods=['GET', 'POST'])
 def genvac():
-    json_data = flask.request.json
+    json_data = request.json
     txt = json_data["text"]
     return jsonify(generate_template(txt))
 
