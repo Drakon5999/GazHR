@@ -2,7 +2,8 @@ import re
 import pandas as pd
 import nltk
 import numpy as np
-
+from transformers import PegasusForConditionalGeneration, PegasusTokenizer
+import torch
 
 try:
     analyt_vac = pd.read_csv('/app/analyt_vac.csv')
