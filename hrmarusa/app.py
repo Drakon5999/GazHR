@@ -10,7 +10,7 @@ def genvac():
     return jsonify(generate_template(txt))
 
 @app.route('/check', methods=['GET', 'POST'])
-def genvac():
+def vacanciecheck():
     json_data = request.json
     vacancie = json_data["vacancie"]
     resume = json_data["resume"]
