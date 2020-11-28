@@ -49,7 +49,7 @@ function VacancyList() {
         </Row>
 
         {vacancies.length ? vacancies.map(({job_name, job_description, job_id, job_status}) => {
-          return <VacancyMinimized key={job_name} description={job_description} title={job_name} />
+          return <VacancyMinimized key={job_name} description={job_description} id={job_id} title={job_name} />
         }) : <EmptyVacancies />}
       </Container>
     </>

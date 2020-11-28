@@ -7,7 +7,6 @@ export const generateText = async (text) => {
   };
 
   const [error, response] = await to(axios.post('generate_description', body))
-  console.log(error, response)
   if (error || !response) throw error;
   return response.data;
 }
@@ -38,7 +37,7 @@ export const getJobFullInfo = async (jobId) => {
     job_id: jobId,
   };
 
-  const [error, response] = await to(axios.post('job_full_info', body))
+  const [error, response] = await to(axios.post('get_job_full_info', body))
   if (error || !response) throw error;
   return response.data;
 }
