@@ -1,5 +1,6 @@
 import {Button, Card, Col, Row} from 'react-bootstrap';
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 function VacancyMinimized({description, title, id, status, handleClick}) {
   return (
@@ -11,7 +12,7 @@ function VacancyMinimized({description, title, id, status, handleClick}) {
             <Card.Text>
               {description}
             </Card.Text>
-            <Button variant="primary" href={`/vacancy/${id}`} className="align-self-end">Подробнее</Button>
+            <Link to={`/vacancy/${id}`}><Button variant="primary" className="align-self-end">Подробнее</Button></Link>
           </Card.Body>
         </Card>
       </Col>

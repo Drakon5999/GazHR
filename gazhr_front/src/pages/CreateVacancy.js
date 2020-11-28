@@ -1,4 +1,4 @@
-import {Container, Row, Col, Button, Spinner} from 'react-bootstrap';
+import {Container, Row, Col, Button, Spinner, Alert} from 'react-bootstrap';
 import {TextEditor, GeneratedText, RecommendSet} from '../containers';
 import {api} from '../services';
 import React, {useState, useRef} from 'react';
@@ -9,7 +9,7 @@ import {GoBackButton} from '../components';
 const useUserEdit = () => {
   const [text, setText] = useState('');
   const [generatedText, setGeneratedText] = useState('');
-  const [suggests, setSuggests] = useState([]);
+  const [suggests, setSuggests] = useState(['Текст']);
   const timerId = useRef(0);
 
   const onChange = (value) => {
@@ -27,7 +27,7 @@ const useUserEdit = () => {
   const clear = () => {
     setText('');
     setGeneratedText('');
-    setSuggests([]);
+    setSuggests(['Текст']);
     timerId.current && clearTimeout(timerId.current);
   }
 
@@ -37,8 +37,13 @@ const useUserEdit = () => {
 function CreateVacancy() {
   const [text, onChange, suggests, generatedText, clear] = useUserEdit();
   const [isLoading, setLoading] = useState(false);
+  const [showError, setShowError] = useState(false);
 
   const handleSubmit = async (text) => {
+    if (!generatedText) {
+      setShowError(true);
+      return;
+    }
     setLoading(true);
     const [error, data] = await to(api.submitDescription(text));
 
@@ -55,7 +60,20 @@ function CreateVacancy() {
       </Helmet>
 
       <Container>
-        <GoBackButton />
+        {showError && (
+          <Alert variant="danger" onClose={() => setShowError(false)} dismissible>
+            <Alert.Heading>Ууууупс!</Alert.Heading>
+            <p>
+              Мне кажется Вы хотети создать вакансию без данных
+            </p>
+          </Alert>
+        )}
+
+        <Row className="mb-2">
+          <Col className="text-right">
+            <GoBackButton />
+          </Col>
+        </Row>
 
         <Row className={"form"}>
           <Col sm={8}>
