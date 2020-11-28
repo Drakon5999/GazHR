@@ -16,6 +16,7 @@ from main_app.api.get_scenario import get_scenario
 from main_app.api.resume_status_change import resume_status_change
 from main_app.api.get_all_scenarios import get_all_scenarios
 from main_app.api.delete_vacancy import delete_vacancy
+from main_app.api.create_scenario import create_scenario
 
 urlpatterns = [
     path("api/get_jobs_list", get_jobs_list, name="api/get_jobs_list"),
@@ -41,5 +42,7 @@ urlpatterns = [
          name="api/get_all_scenarios"),
     path("api/delete_vacancy", delete_vacancy,
          name="api/delete_vacancy"),
+    path("api/create_scenario", create_scenario,
+         name="api/create_scenario"),
 
 ]
