@@ -141,9 +141,6 @@ def generate_template(txt):
                 if typevac is None:
                     typevac = 'дизайнер интерфейсов (' + sk + ')'
 
-        if typevac is None:
-            typevac = 'аналитик'
-        
         for ys in year_entities:
             if len(re.findall(r"("+ys+")", s)) > 0:
                 dont_include = True
@@ -156,6 +153,9 @@ def generate_template(txt):
 
         if not dont_include:
             new_texts.append(s)
+
+    if typevac is None:
+        typevac = 'аналитик'
 
     duties = get_duties(txt)
     duties_list = []
