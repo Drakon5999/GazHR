@@ -48,6 +48,7 @@ class Candidate(models.Model):
     created_timestamp = models.DateTimeField(
         help_text="Timestamp of creation"
     )
+    scenario_step = models.IntegerField(default=0)
 
 
 class Resume(models.Model):
