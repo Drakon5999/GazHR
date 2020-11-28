@@ -101,7 +101,7 @@ class Command(BaseCommand):
         v1 = Vacancy(
             name="Программист C++",
             source_text="Нужен плюсовика",
-            transformed_text="В нашу компанию нужен C++ разработчик",
+            transformed_text="В нашу компанию нужен инженер-программист с навыками в создании прикладного ПО на С/С++. Требования: 1) профессиональное знание С/С++; 2) умение грамотно и структурировано составлять исходный код ПО; 3) Способность разбираться в чужом коде;",
             created_timestamp=datetime.datetime.now(),
             finished_timestamp=datetime.datetime.now(),
             scenario_id=s1,
