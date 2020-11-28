@@ -3,9 +3,9 @@ import pandas as pd
 import nltk
 import numpy as np
 
-analyt_vac = pd.read_csv('/app/analyt_vac.csv')
-prog_vac = pd.read_csv('/app/prog_vac.csv')
-design_vac = pd.read_csv('/app/design_vac.csv')
+analyt_vac = pd.read_csv('analyt_vac.csv')
+prog_vac = pd.read_csv('prog_vac.csv')
+design_vac = pd.read_csv('design_vac.csv')
 
 full_set = pd.concat([analyt_vac,prog_vac,design_vac], \
     ignore_index=True).reset_index(drop=True)
