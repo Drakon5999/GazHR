@@ -12,8 +12,10 @@ from django.views.decorators.csrf import csrf_exempt
 def submit_description(request):
     try:
         data = json.loads(request.body)
-        model_response = requests.post('http://{}:{}/generate'.format(settings.MODEL_HOST, settings.MODEL_PORT), json=data).json()
+        model_response = requests.post(
+            'http://{}:{}/generate'.format(settings.MODEL_HOST, settings.MODEL_PORT), json=data).json()
         vacancy = Vacancy(
+            name=data["name"],
             source_text=data['text'],
             transformed_text=model_response['description'],
             created_timestamp=timezone.now()
