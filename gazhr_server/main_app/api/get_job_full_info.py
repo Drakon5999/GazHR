@@ -3,6 +3,7 @@ from main_app.models import Vacancy, Vacancy2Resume, Resume, Candidate, Task
 import json
 
 from django.conf import settings
+import requests
 
 
 from django.views.decorators.csrf import csrf_exempt
