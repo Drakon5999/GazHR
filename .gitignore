@@ -2,6 +2,7 @@
 
 # dependencies
 /gazhr_front/node_modules
+/gazhr_front/.eslintcache
 /.pnp
 /.idea
 .pnp.js
