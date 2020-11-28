@@ -34,6 +34,7 @@ ALLOWED_HOSTS = [
     'localhost',
     '0.0.0.0',
     '.' + DOMAIN,
+    '87.239.110.212',
 ]
 
 
@@ -193,7 +194,9 @@ AUTH_PASSWORD_VALIDATORS = [
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
-    "http://127.0.0.1:3000"
+    "http://127.0.0.1:3000",
+    "http://87.239.110.212:8000",
+    "http://87.239.110.212:3000",
 ]
 
 MODEL_HOST = config.get('hrmarusa', 'MODEL_HOST', fallback='127.0.0.1')
