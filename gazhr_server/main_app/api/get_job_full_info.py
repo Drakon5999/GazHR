@@ -26,7 +26,6 @@ def get_job_full_info(request):
             model_response = requests.post(
                 'http://{}:{}/check'.format(settings.MODEL_HOST, settings.MODEL_PORT), json=tmp_data).json()
             import sys
-            import json
             print(json.dumps({"query": tmp_data, "answer": model_response}, ensure_ascii=False),
                   file=sys.stderr, flush=True)
             cand = x.candidate_id
