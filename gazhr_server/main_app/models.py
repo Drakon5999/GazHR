@@ -12,7 +12,7 @@ class Scenario(models.Model):
 
 class Task(models.Model):
     name = models.TextField(help_text="Task text")
-    path = models.TextField(
+    task_file = models.FileField(
         help_text="Path to task documents",
         default=None, null=True
     )
