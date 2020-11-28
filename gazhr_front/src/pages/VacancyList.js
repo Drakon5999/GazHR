@@ -15,7 +15,7 @@ function VacancyList() {
     job_status: 'light',
   },
     {
-      job_name: 'строка',
+      job_name: 'строка 2',
       job_description: 'обрезанное описание',
       job_id: 2,
       job_status: 'warning',
@@ -36,7 +36,6 @@ function VacancyList() {
     const intervalID = setInterval(getVacancies, refreshInterval);
 
     return () => {
-      console.log('close')
       clearInterval(intervalID);
     };
   }, [])
@@ -61,7 +60,7 @@ function VacancyList() {
         </Row>
 
         {vacancies.map(({job_name, job_description, job_id, job_status}) => {
-          return <VacancyMinimized key={job_id} description={job_description} title={job_name} id={job_id} status={job_status} />
+          return <VacancyMinimized key={job_name} description={job_description} title={job_name} id={job_id} status={job_status} />
         })}
       </Container>
     </>
