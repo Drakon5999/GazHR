@@ -28,7 +28,7 @@ const OtherVacancyIcon = () => (
   </svg>
 );
 
-function VacancyStep({title, isMeeting, candidates, handleNextStep, handleDeny, handleOtherJob}) {
+function VacancyStep({vacancyId, title, isMeeting, candidates, handleNextStep, handleDeny, handleOtherJob}) {
   const [show, setShow] = useState(false);
   const [info, setInfo] = useState({});
 
@@ -48,8 +48,9 @@ function VacancyStep({title, isMeeting, candidates, handleNextStep, handleDeny, 
       }
     }
 
-    const data = {name: res.data.name, more, id: res.data.candidate_id};
+    const [err, check] = await to(api.checkResume(vacancyId, candidateId));
 
+    const data = {name: res.data.name, more, id: res.data.candidate_id, score: check.score, view: check.color_html};
     setInfo(data)
     setShow(true);
   }
@@ -78,12 +79,14 @@ function VacancyStep({title, isMeeting, candidates, handleNextStep, handleDeny, 
         </Modal.Header>
         <Modal.Body>
           {info.more?.map(item => <p key={item.name}><strong>{item.name}</strong>: {item.value}</p>)}
+          <CandidateScore score={info.score}/>
+          <div dangerouslySetInnerHTML={{__html: info.view}} />
         </Modal.Body>
         <Modal.Footer className="justify-content-between">
-          <Button variant="outline-danger" onClick={() => handleDeny(info.candidate_id)}>Отказать <DenyIcon/></Button>
+          <Button variant="outline-danger" onClick={() => handleDeny(info.id)}>Отказать <DenyIcon/></Button>
           <span>
-            <Button variant="outline-info" onClick={() => handleOtherJob(info.candidate_id)}>Предложить другую вакансию <OtherVacancyIcon/></Button>{' '}
-            <Button variant="success" onClick={() => handleNextStep(info.candidate_id)}>На следующий шаг <NextStepIcon /></Button>
+            <Button variant="outline-info" onClick={() => handleOtherJob(info.id)}>Предложить другую вакансию <OtherVacancyIcon/></Button>{' '}
+            <Button variant="success" onClick={() => handleNextStep(info.id)}>На следующий шаг <NextStepIcon /></Button>
           </span>
         </Modal.Footer>
       </Modal>
