@@ -16,7 +16,7 @@ def get_jobs_list(request):
                     "job_id": int(x.id),
                     "job_name": x.name,
                     "job_description": x.transformed_text,
-                    "scenario_id": int(x.scenario_id)
+                    "scenario_id": int(x.scenario_id.id)
                 } for x in valancy
             ]
         }
