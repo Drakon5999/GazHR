@@ -1,84 +1,96 @@
-import {Alert, Col, Container, Row} from 'react-bootstrap';
+import {Col, Container, Row} from 'react-bootstrap';
 import React, {useEffect, useState} from 'react';
 import {Helmet} from "react-helmet";
 import {useParams} from 'react-router-dom';
 import to from 'await-to-js';
-import {GoBackButton} from '../components';
-import {VacancyCandidates} from '../containers';
+import {GoBackButton, VacancyText} from '../components';
+import {VacancyStep} from '../containers';
 import {api} from '../services';
+import EmptyVacancy from '../components/EmptyVacancy';
 
 function Vacancy({}) {
-  const [vacancy, setVacancy] = useState({
-    job_name: 'строка',
-    job_description: 'обрезанное описанио',
-    job_id: 'число',
-    scenario_id: 'привязанный сценарий, число',
-    candidates: ''[
-      {
-        name: 'ФИО',
-        score: 'число',
-        candidate_id: 'число',
-        status: 'поле в котором можно хранить на каком сейчас этапе кандидат, для сценариев',
-      }
-      ],
-    test_files: ''[
-      {
-        name: 'название файл',
-        test_file_url: 'url файл',
-      }
-      ]
-
-  });
+  const [vacancy, setVacancy] = useState({});
+  const [scriptSteps, setScriptSteps] = useState([]);
   const [isShowError, setShowError] = useState(false);
 
   let {id} = useParams();
 
-  useEffect(() => {
-    (async () => {
-      const [error, data] = await to(api.getJobFullInfo(id));
-      if (error) {
-        setShowError(true);
-        return;
-      }
-      setVacancy(data);
-    })()
-  }, []);
+  const refresh = async () => {
+    const [error, res] = await to(api.getJobFullInfo(id));
+    const data = typeof res.data === 'string' ? JSON.parse(res.data) : res.data;
 
-  const handleNextStep = (candidateId) => {
+    if (error) {
+      setShowError(true);
+      return;
+    }
+    setVacancy(data);
 
+    const [errorScript, resScript] = await to(api.getScript(data.scenario_id));
+    if (errorScript) return;
+    setScriptSteps(resScript.data);
   };
 
-  const handleDeny = (candidateId) => {
+  useEffect(() => {
+    refresh();
+  }, []);
 
+  const handleNextStep = async (candidateId) => {
+    const [error] = await to(api.goToNextStep(candidateId));
+    if (error) return;
+
+    refresh();
+  };
+
+  const handleDeny = async (candidateId) => {
+    const [error] = await to(api.denyCandidate(id, candidateId));
+    if (error) return;
+
+    refresh();
+  };
+
+  const handleOtherJob = async (candidateId) => {
+    const [error] = await to(api.goToOtherJob(candidateId));
+    if (error) return;
+
+    refresh();
   };
 
   return (
     <>
       <Helmet>
-        <title>{vacancy.job_name || 'Вакансия'}</title>
+        <title>{vacancy?.job_name || 'Вакансия'}</title>
       </Helmet>
 
       <Container>
-        {isShowError && (
-          <Alert variant="danger" onClose={() => setShowError(false)} dismissible>
-            <Alert.Heading>Ууууупс!</Alert.Heading>
-            <p>Вакансия не найдена или ещё какая ошибка, мы не знаем</p>
-          </Alert>
-        )}
-
-        <Row className="mb-2">
+        <Row className="Header mb-2">
           <Col className="text-right">
             <GoBackButton/>
           </Col>
         </Row>
 
-        <Row>
-          <Col><p>{vacancy.job_description || 'Описание'}</p></Col>
 
-          <Col>
-            <VacancyCandidates candidates={vacancy.candidates || []} handleNextStep={handleNextStep}
-                               handleDeny={handleDeny}/>
-          </Col>
+        <Row>
+          {!isShowError ? (
+              <>
+                <VacancyText text={vacancy?.transformed_text} />
+
+                <Col>
+                  <h4>Путь к трудоустройству</h4>
+                  {scriptSteps?.map((step, index) => {
+                    return <VacancyStep
+                      title={step.step_name}
+                      isMeeting={step.is_meeting}
+                      candidates={vacancy.candidates.filter(a => a.step === index)}
+                      handleNextStep={handleNextStep}
+                      handleDeny={handleDeny}
+                      handleOtherJob={handleOtherJob}
+                    />
+                  })}
+                </Col>
+              </>
+            ) : (
+              <Col><EmptyVacancy /></Col>
+          )}
         </Row>
       </Container>
     </>

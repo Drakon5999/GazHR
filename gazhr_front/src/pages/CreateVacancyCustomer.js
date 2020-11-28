@@ -8,50 +8,45 @@ import {Helmet} from "react-helmet";
 import {GoBackButton} from '../components';
 
 const useUserEdit = () => {
-  const [name, setName] = useState('');
   const [text, setText] = useState('');
   const [generatedText, setGeneratedText] = useState('');
-  const [suggests, setSuggests] = useState(['']);
-  const [isCreating, setCreating] = useState(false);
+  const [suggests, setSuggests] = useState(['Текст']);
   const timerId = useRef(0);
 
   const onChange = (value) => {
     setText(value);
     timerId.current && clearTimeout(timerId.current);
     timerId.current = setTimeout(async () => {
-      setCreating(true);
-      const [error, data] = await to(api.generateText(value));
+      const [error, data] = await to(api.generateText());
       if (!error && data) {
         setGeneratedText(data?.data?.description || '');
-        setSuggests(data?.data?.suggests || ['']);
+        setSuggests(data?.data?.suggests || ['Текст']);
       }
-      setCreating(false);
     }, 1500);
   }
 
   const clear = () => {
     setText('');
     setGeneratedText('');
-    setName('');
-    setSuggests(['']);
+    setSuggests(['Текст']);
     timerId.current && clearTimeout(timerId.current);
   }
 
-  return [text, onChange, name, setName, suggests, generatedText, isCreating, clear]
+  return [text, onChange, suggests, generatedText, clear]
 };
 
-function CreateVacancy() {
-  const [text, onChange, name, setName, suggests, generatedText, isCreating, clear] = useUserEdit();
+function CreateVacancyCustomer() {
+  const [text, onChange, suggests, generatedText, clear] = useUserEdit();
   const [isLoading, setLoading] = useState(false);
   const [showError, setShowError] = useState(false);
 
-  const handleSubmit = async (name, text) => {
+  const handleSubmit = async (text) => {
     if (!generatedText) {
       setShowError(true);
       return;
     }
     setLoading(true);
-    const [error, data] = await to(api.submitDescription(name, text));
+    const [error, data] = await to(api.submitDescription(text));
 
     setLoading(false);
     if (error || !data.job_id) return;
@@ -72,7 +67,6 @@ function CreateVacancy() {
           </Col>
         </Row>
 
-
         {showError && (
           <Alert variant="danger" onClose={() => setShowError(false)} dismissible>
             <Alert.Heading>Ууууупс!</Alert.Heading>
@@ -85,11 +79,11 @@ function CreateVacancy() {
         <Row className={"form"}>
           <Col sm={8}>
             <Row>
-              <TextEditor value={text} onChange={onChange} name={name} onChangeName={setName}/>
+              <TextEditor value={text} onChange={onChange}/>
             </Row>
 
             <Row>
-              <GeneratedText text={generatedText} isLoading={isCreating}/>
+              <GeneratedText text={generatedText}/>
             </Row>
           </Col>
 
@@ -102,7 +96,7 @@ function CreateVacancy() {
           <Button
             disabled={isLoading}
             variant="success"
-            onClick={() => handleSubmit(name, generatedText)}>
+            onClick={() => handleSubmit(generatedText)}>
             {!isLoading ? 'Создать' : <Spinner animation="border" size="sm"/>}
           </Button>
         </Row>
@@ -111,4 +105,4 @@ function CreateVacancy() {
   );
 }
 
-export default CreateVacancy;
+export default CreateVacancyCustomer;

@@ -6,7 +6,8 @@ import {
   Route,
   Link
 } from 'react-router-dom';
-import {Home, CreateVacancy, VacancyList, Vacancy} from './pages';
+import {Home, CreateVacancy, CreateVacancyCustomer, VacancyList, Vacancy, VacancyListCustomer, CreateTemplate} from './pages';
+import CreateScript from './pages/CreateScript';
 
 function App() {
   return (
@@ -22,8 +23,24 @@ function App() {
               <VacancyList/>
             </Route>
 
+            <Route path="/vacancy-customer">
+              <VacancyListCustomer/>
+            </Route>
+
+            <Route path="/create-vacancy-customer">
+              <CreateVacancyCustomer/>
+            </Route>
+
             <Route path="/create-vacancy">
               <CreateVacancy/>
+            </Route>
+
+            <Route path="/create-script">
+              <CreateScript/>
+            </Route>
+
+            <Route path="/create-template">
+              <CreateTemplate/>
             </Route>
 
             <Route path="/">
