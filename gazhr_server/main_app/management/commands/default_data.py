@@ -41,7 +41,7 @@ class Command(BaseCommand):
         c3.save()
         r1 = Resume(
             candidate_id=c1,
-            text="Возмите меня куда нибудь, я не ел уже неделю. Я умению C++, C, Python, Java.",
+            text="Возмите меня куда нибудь, я не ел уже неделю. Я уменю C++, C, Python, Java.",
             tags={
                 "languages": ["Java", "English"],
                 "tools": ["Компьютер"],
