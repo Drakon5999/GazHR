@@ -65,7 +65,7 @@ class Resume(models.Model):
 class Vacancy2Resume(models.Model):
     vacancy_id = models.ForeignKey(Vacancy, on_delete=models.CASCADE)
     resume_id = models.ForeignKey(Resume, on_delete=models.CASCADE)
-    score = models.FloatField(help_text="Сompliance score")
+    score = models.FloatField(help_text="Сompliance score", default=0.0)
     created_timestamp = models.DateTimeField(
         help_text="Timestamp of creation"
     )
