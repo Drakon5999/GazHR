@@ -14,5 +14,6 @@ docker-compose up -d —build
 ### Запуск fronend-части сервиса:
 ```
 cd gazhr_front
+npm i
 npm run start
 ```
