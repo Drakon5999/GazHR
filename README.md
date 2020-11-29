@@ -3,7 +3,7 @@
 
 Ссылка на [Demo](http://87.239.110.212:3000/).
 
-Описание [REST API](https://docs.google.com/document/d/1aG3cklhCz38KzjXIwHMR9scZhQUmJSgfSgIKGWBAI0E/edit)
+Описание [REST API](https://docs.google.com/document/d/1aG3cklhCz38KzjXIwHMR9scZhQUmJSgfSgIKGWBAI0E/edit).
 
 
 ### Запуск backend-части сервиса:
