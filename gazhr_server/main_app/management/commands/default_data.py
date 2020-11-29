@@ -13,7 +13,7 @@ class Command(BaseCommand):
             full_name="Андрей Иванов",
             created_timestamp=datetime.datetime.now(),
             addition_info={
-                "должность": "C++ программист",
+                "должность": "Java программист",
                 "опыт": "2 года",
                 "ЗП": "2 доширака"
             },
@@ -41,7 +41,7 @@ class Command(BaseCommand):
         c3.save()
         r1 = Resume(
             candidate_id=c1,
-            text="""Стек: C++, С++11, ООП, STL.
+            text="""Стек: Java, С++11, ООП, STL.
 Базовые знания: Qt, SQLite, MySQL, Git, Паттерны.
 Английский уровня pre- intermidiate; Повышаю знания на курсах в данное время.
 Для меня важно быть технически эрудированным в своей области, иметь возможность развиваться в рабочем процессе, карьерный рост.
@@ -70,7 +70,7 @@ class Command(BaseCommand):
         r2.save()
         r3 = Resume(
             candidate_id=c3,
-            text="Ничего не умею кроме Python, C++ и JS",
+            text="Ничего не умею кроме Python, Java и JS",
             tags={
                 "tools": ["Нету"],
             },
@@ -105,7 +105,7 @@ class Command(BaseCommand):
         )
         t1.save()
         v1 = Vacancy(
-            name="Программист C++",
+            name="Программист Java",
             source_text="Нужен плюсовика",
             transformed_text="В нашу компанию нужен инженер-программист с навыками в создании прикладного ПО на С/С++. Требования: 1) профессиональное знание С/С++; 2) умение грамотно и структурировано составлять исходный код ПО; 3) Способность разбираться в чужом коде;",
             created_timestamp=datetime.datetime.now(),
