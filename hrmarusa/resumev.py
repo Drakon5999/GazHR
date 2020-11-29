@@ -183,11 +183,11 @@ def resume_score(vacancie, resume):
             #print(s,v)
             if (s == v):
                 score += 10.0 / key_skills.get(s, 1e6)
-                word_score += 10.0 / key_skills.get(s, 1e6)
+                word_score += 100.0 / key_skills.get(s, 1e6)
         if (word_score < 1e-1) and ((s.find('год')>=0) or (s.find('лет')>=0) or (s.find('опыт')>=0)):
             q = (float(b >= a) - 0.5) / (np.random.rand(1)[0]*1e3)
             score += q
-            word_score += q
+            word_score += q*100
         elif (word_score < 1e-1):
             q = 1.0 / (np.random.rand(1)[0]*1e4 - 0.5e4)
             score += q
