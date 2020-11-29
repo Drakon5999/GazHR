@@ -60,7 +60,7 @@ export const getScripts = async () => {
 }
 
 export const getCandidates = async () => {
-  const [error, response] = await to(axios.post('get_candidates'))
+  const [error, response] = await to(axios.post('get_all_candidates'))
   if (error || !response) throw error;
   return response.data;
 }
