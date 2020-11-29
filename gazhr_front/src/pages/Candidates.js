@@ -12,8 +12,7 @@ function Candidates() {
   const getVacancies = async () => {
     const [error, data] = await to(api.getCandidates());
     if (error) return;
-
-    data?.candidates && setCandidates(data.jobs);
+    data?.data && setCandidates(data.data);
   };
 
   useEffect(() => {
@@ -48,7 +47,7 @@ function Candidates() {
 
         {candidates.length ? candidates.map((candidate) => {
           return (
-            <Card body>{candidate.name}</Card>
+            <Card body>{candidate.full_name}</Card>
           )
         }) : <EmptyVacancies/>}
       </Container>
