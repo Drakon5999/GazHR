@@ -23,7 +23,9 @@ const useUserEdit = () => {
       const [error, data] = await to(api.generateText(value));
       if (!error && data) {
         setGeneratedText(data?.data?.description || '');
-        setSuggests(data?.data?.suggests || ['']);
+        setSuggests(data?.data?.warnings?.map(function(val){
+          return val['item']['text'];
+        }) || ['']);
       }
       setCreating(false);
     }, 1500);

@@ -28,7 +28,8 @@ function App() {
             </Route>
 
             <Route path="/create-vacancy-customer">
-              <CreateVacancyCustomer/>
+              {/*<CreateVacancyCustomer/> багнутая*/}
+              <CreateVacancy/>
             </Route>
 
             <Route path="/create-vacancy">
