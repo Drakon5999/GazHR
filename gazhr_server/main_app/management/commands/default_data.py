@@ -106,14 +106,87 @@ class Command(BaseCommand):
         t1.save()
         v1 = Vacancy(
             name="Программист Java",
-            source_text="Нужен плюсовика",
-            transformed_text="В нашу компанию нужен инженер-программист с навыками в создании прикладного ПО на Java. Требования: 1) профессиональное знание Java; 2) умение грамотно и структурировано составлять исходный код ПО; 3) Способность разбираться в чужом коде;",
+            source_text="Нужен разработчик java",
+            transformed_text="В нашу компанию нужен инженер-программист с навыками в создании прикладного ПО на Java. Требования: \n1) профессиональное знание Java; \n2) умение грамотно и структурировано составлять исходный код ПО; \n3) Способность разбираться в чужом коде;",
             created_timestamp=datetime.datetime.now(),
             finished_timestamp=datetime.datetime.now(),
             scenario_id=s1,
             task_id=t1,
         )
         v1.save()
+        v2r1 = Vacancy2Resume(
+            vacancy_id=v1,
+            resume_id=r1,
+            score=0.7,
+            created_timestamp=datetime.datetime.now()
+        )
+        v2r1.save()
+        v2r2 = Vacancy2Resume(
+            vacancy_id=v1,
+            resume_id=r2,
+            score=0.5,
+            created_timestamp=datetime.datetime.now()
+        )
+        v2r2.save()
+        v2r3 = Vacancy2Resume(
+            vacancy_id=v1,
+            resume_id=r3,
+            score=0.3,
+            created_timestamp=datetime.datetime.now()
+        )
+        v2r3.save()
+        v1 = Vacancy(
+            name="Мобильный full-stack разработчик",
+            source_text="Нужен разработчик мобильных приложений",
+            transformed_text="""
+Требуемый опыт работы: 3–6 лет
+
+Полная занятость, удаленная работа
+
+Технологический стек:
+
+    Java 11;
+    Spring;
+    Angular;
+    PostgreSQL / MySQL;
+    Liquibase;
+    JIRA.
+
+Плюсом будет:
+
+    Опыт работы c СI/СD;
+    Опыт работы с RabbitMQ;
+    Опыт работы с MongoDB, Redis;
+    Опыт написания модульных и интеграционных тестов;
+    Знание современных инженерных практик включая код ревью, работу с системами контроля версий, сборки, тестирования и тд.
+
+Обязанности:
+
+    Ваша деятельность будет связана с frontend и backend разработкой
+    Поддержка тестового покрытия кода
+    Ведение проектной документации
+
+Требования:
+
+    Опыт разработки backend на Java / Spring Boot минимум 3 года;
+    Умение писать SQL-запросы;
+    Высшее образование (техническое);
+    Возможность и желание работать удаленно.
+
+Условия:
+
+    Стабильная заработная плата;
+    Перспективы профессионального и карьерного роста;
+    Удаленная работа.
+
+        """,
+            created_timestamp=datetime.datetime.now(),
+            finished_timestamp=datetime.datetime.now(),
+            scenario_id=s1,
+            task_id=t1,
+        )
+        v1.save()
+        
         v2r1 = Vacancy2Resume(
             vacancy_id=v1,
             resume_id=r1,
