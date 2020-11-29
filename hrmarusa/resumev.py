@@ -182,20 +182,16 @@ def resume_score(vacancie, resume):
         for v in vacancie_words:
             #print(s,v)
             if (s == v):
-                score += 10.0 / key_skills.get(s, 1e6)
-                word_score += 100.0 / key_skills.get(s, 1e6)
-        if (word_score < 1e-1) and ((s.find('год')>=0) or (s.find('лет')>=0) or (s.find('опыт')>=0)):
-            q = (float(b >= a) - 0.5) / (np.random.rand(1)[0]*1e3)
+                score += 1000.0 / key_skills.get(s, 1e6)
+                word_score += 1000.0 / key_skills.get(s, 1e6)
+        if (word_score < 1e-4) and ((s.find('год')>=0) or (s.find('лет')>=0) or (s.find('опыт')>=0)):
+            q = (float(b >= a) - 0.5) / 2e1
             score += q
-            word_score += q*100
-        elif (word_score < 1e-1):
-            q = 1.0 / (np.random.rand(1)[0]*1e4 - 0.5e4)
-            score += q
-            word_score += q
+            word_score += q*100.0
         #print(s, word_score)
         html_str += ' ' + _colorize(s, word_score, 1.0)
     #print(score)
-    #z = score + 0.5
-    z = 1.0/(1.0 + np.exp(-score)) 
+    z = score * 100.0
+    z = 10.0/(1.0 + np.exp(-score)) 
 
-    return {'score': float(0.001 * int(1000.0*z)), 'color_html': html_str}
+    return {'score': float(0.001 * int(100.0*z)), 'color_html': html_str}
